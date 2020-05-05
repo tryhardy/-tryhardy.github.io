@@ -1,0 +1,191 @@
+.about-section {
+  display: flex;  
+  align-items: center;
+  padding-bottom: 150px;
+  padding-top: 120px;
+
+  @include phones() {
+    padding-top: 4.5rem;
+  }
+}
+
+.about {
+  display: flex;
+  max-width: 65%;
+  margin: auto;
+
+   @include desktop(){
+    max-width: 85%;
+   }
+
+   @include tablets() {
+     max-width: 95%;
+   }
+
+   @include phones(){
+    max-width: 100%;
+    flex-wrap: wrap;
+   }
+
+  &__disclamer,
+  &__desc {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+    color: #979cab;
+  }
+}
+
+.about__user-data {
+  flex: 1 1 30%;
+  display: flex;
+  justify-content: center;
+
+  @include phones() {
+    flex: 1 1 70%;
+  }
+}
+
+.about__content {
+  flex: 4;
+  margin-left: 50px;
+  color: #979cab;
+  line-height: 1.42;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include phones() {
+    margin-left: 0rem;
+  }
+}
+
+.about__title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #414c63;
+
+  @include phones() {
+    margin-bottom: 1rem;
+  }
+}
+
+.about__ps {
+  font-style: italic;
+  position: relative;
+}
+
+.about__ps-star {
+  font-size: 48px;
+  position: absolute;
+  left: -50px;
+  line-height: 1;
+  color: #e6d0d7;
+}
+
+
+
+
+.user-info {
+  width: 100%;
+}
+
+.user-info__data {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.user-info__avatar {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 75px;
+
+  @include tablets {
+    width: 160px;
+    height: 160px;
+  }
+
+  @include phones() {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1rem;
+  }
+}
+
+.user-info__data {
+  td {
+    padding: 0 0 20px 0;
+    font-weight: 600;
+  }
+
+  td:first-child {
+    color: #979cab;
+    padding-right: 20px;
+  }
+}
+
+
+
+.user-data {
+
+  @include desktop(){
+    display: flex;
+    text-align: left;
+  }
+
+  @include tablets() {
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.user-data__desc {
+  font-size: 18px;
+  font-weight: 600;
+  color: #a8b1b9;
+  margin-bottom: 40px;
+  white-space: nowrap;
+
+  @include desktop(){
+    text-align: right;
+    margin-bottom: 0rem;
+    margin-right: 60px;
+  }
+
+  @include tablets() {
+    text-align: center;
+    margin-right:0;
+    margin-bottom: 40px;
+  }
+}
+
+.user-data__name {
+  font-size: 70px;
+  font-weight: 900;
+  line-height: .8;
+
+  @include phones() {
+    font-size: 40px;
+    line-height: 1;
+  }
+}
+
+.scroll-down-btn {
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-right: 10px;
+  }
+}
+
+.scroll-down-btn__svg {
+  height: 30px;
+  fill: currentColor;
+}

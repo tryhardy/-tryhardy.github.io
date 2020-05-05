@@ -1,0 +1,30 @@
+footer.footer
+  .container
+    .footer__wrapper
+      .footer__left
+        .footer__year
+          p © 2019
+        .footer__author
+          h3 Наталия Гаращенко
+          p Личный сайт веб-разработчика
+      .footer__right
+        .footer__menu
+          include ./menu.pug
+        .footer__info
+          .footer__description
+            p Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+          .socials
+            - var socials = ["insta", "vk", "github"]
+            
+            ul.socials__list
+              each social in socials
+                  li.socials__item
+                    a(href="").socials__link 
+                      +icon(social, "socials__icon")
+        
+        .footer__quote
+          p Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+          p.footer__quote-author Martin Golding
+
+
+

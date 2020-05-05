@@ -1,0 +1,79 @@
+.feedback {
+
+  &__column {
+    display:flex;
+    margin-bottom: 40px;
+
+    @include phones() {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__row {
+    flex: 1;
+    display:flex;
+    margin-right: 60px;
+
+    @include phones() {
+      flex: 1 1 100%;
+      margin-right: 0;
+      margin-bottom: 40px;
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      @include tablets() {
+        justify-content: center;
+      }
+    }
+  }
+
+  &__block {
+    flex: 1;
+    border-bottom: 1px solid #464d62;
+    padding-left: 45px;
+    position: relative;
+  }
+
+  &__field-wrapper {
+    position: relative;
+  }
+
+  &__icon {
+    width: 30px;
+    position: absolute;
+    fill: currentColor;
+    left: -45px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #c6c8d0; 
+  }
+
+  &__svg {
+    fill: #c7c9d0;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    font-weight: 700;
+    font-size: 18px;
+    padding-bottom: 10px;
+    line-height: 1.9;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 50px;
+}

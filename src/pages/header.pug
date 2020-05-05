@@ -1,0 +1,17 @@
+header.header
+  .header__logo
+    .logo NG
+
+  .header__btns
+    include ./menu.pug
+
+  .header__socials
+    - var socials = ["insta", "vk", "github"]
+    
+    ul.socials__list
+      each social in socials
+          li.socials__item
+            a(href="").socials__link 
+              +icon(social, "socials__icon")
+  
+    include ./hamburger.pug

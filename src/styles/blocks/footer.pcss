@@ -1,0 +1,172 @@
+.footer {
+  color: #494b50;
+  background-color: #252830;
+  line-height: 1.9;
+  padding: 90px 0;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    @include phones() {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex: 1 1 30%;
+
+    @include desktopHd() {
+      max-width: 30%;
+    }
+
+    @include desktop() {
+      flex-wrap: wrap;
+      align-content: flex-start;
+      max-width: 20%;
+      margin-right: 60px;
+    }
+
+    @include phones() {
+      max-width: 100%;
+      width: 100%;
+      margin-right: 0;
+      flex: 1 1 100%;
+      display: block;
+      margin-bottom: 30px;
+    }
+
+  }
+
+  &__right {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 60%;
+
+    @include desktopHd() {
+      max-width: 60%;
+    }
+
+    @include desktop() {
+      max-width: 75%;
+    }
+
+    @include phones() {
+      max-width: 100%;
+    }
+  }
+
+  &__menu {
+    width: 90%;
+    color: white;
+    margin-bottom: 65px;
+
+    @include phones() {
+      margin-bottom: 30px;
+    }
+
+    .menu {
+      justify-content: flex-start;
+    }
+
+    .menu__list {
+      @include tablets() {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    }
+
+    .menu__item {
+      @include tablets {
+        margin-right: 60px;
+      }
+      
+
+      @include phones() {
+        margin-bottom: 1rem;
+        margin-right: 0px;
+        flex: 1 1 50%;
+      }
+      
+    }
+  }
+
+  &__info,
+  &__quote {
+    flex: 1 1 47%;
+
+    @include tablets() {
+      flex: 1 1 100%;
+    }
+  }
+
+  &__info {
+    margin-right: 30px;
+
+    @include tablets() {
+      margin-right: 0px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &__year {
+    font-size: 48px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-right: 60px;
+
+    @include desktop() {
+      margin-right: 0px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+  }
+  &__author {
+    h3{
+      font-weight: 18px;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+
+      @include desktop() {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &__description {
+    margin-bottom: 30px;
+  }
+
+  &__quote {
+    p {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__quote-author {
+    color: white;
+    font-weight: 600;
+    font-style: italic;
+  }
+}
+
+
+.footer__info {
+  .socials__item {
+  }
+  .socials__link {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+  }
+  .socials__icon {
+    width: 20px;
+    height: 20px;
+  }
+}

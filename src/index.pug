@@ -1,0 +1,206 @@
+include ./mixins.pug
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Личный сайт веб-разработчика
+  body
+    .wrapper
+      section.welcome-section
+        section.hero
+          .container
+            include ./pages/header.pug
+
+            .hero__content
+              .user-data
+                .user-data__desc 
+                  p Личный сайт 
+                  p веб-разработчика
+                .user-data__name Наталия Гаращенко
+
+            .hero__bottom-btn
+              a(href="").scroll-down-btn 
+                p Скролл
+                +icon("scroll", "scroll-down-btn__svg")
+        
+        section.about-section
+          .container
+            .about
+              .about__user-data
+                .user-info
+                  .user-info__avatar
+                    .avatar
+                      +image("content/user.jpg", "avatar__img")
+                  .user-info__content
+                    -
+                      var userdata = [
+                        ["Проживаю:", "Калининград"],
+                        ["Возраст:", "26 лет"],
+                        ["В вебе:", "2 года"]
+                      ];
+                    table.user-info__data
+                      tbody.user-info__data-body
+                        each row in userdata
+                          tr
+                            td #{row[0]}
+                            td #{row[1]}
+
+              .about__content
+                .about__info
+                  .about__disclamer Привет! Меня зовут
+                  h2.about__title Наталия Гаращенко
+                  .about__desc
+                    p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                .about__ps
+                  p.about__ps-star *
+                  p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+      
+      include ./pages/values.pug
+
+      section.work-section.section
+        .container
+          .section__header
+            h2.section__title Мои работы
+          .section__wrapper       
+            .work
+              .slider
+                
+                .slider__wrapper
+                  - var slides = ["1", "2", "3", "4", "5"];
+                  .slider__container
+                    ul.slider__arrows
+                      li.slider__arrow.slider__arrow--up
+                        +icon("arrow-down", "slider__svg")
+                      li.slider__arrow.slider__arrow--down
+                        +icon("arrow-down", "slider__svg")
+
+                    .slider__list-wrapper
+                      ul.slider__list
+                        each slide in slides
+                          li.slider__item
+                            .slider__item-wrapper
+                              +image(`content/previews/${slide}.jpg`, "slider__img")
+                    ul.slider-nav__list
+                      each slide in slides
+                        li.slider-nav__item
+                          .slider-nav__item-wrapper
+                            +image(`content/previews/${slide}.jpg`, "slider-nav__img")
+
+                .slider-desc
+                  .slider-desc__wrapper
+                    ul.slider-desc__list
+                      li.slider-desc__item
+                        .slider-desc__container
+                          - var tags = ["HTML", "CSS", "JavaScript"];
+
+                          .slider-desc__tags
+                            ul.slider-desc__tags-list
+                              each tag in tags
+                                li.slider-desc__tags-item 
+                                  p #{tag}
+                          .slider-desc__content
+                            h3 Сайт школы с математическим уклоном
+                            p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                          .slider-desc__link 
+                            a(href="").slider-desc__link-address 
+                              +icon("link", "slider-desc__icon")
+                              p Посмотреть сайт
+        .triangles.work-section__triangles
+          svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
+            polygon(points="0,0 1000,0 1000,100")
+          svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
+            polygon(points="0,0 0,100 1000,0")
+
+      section.closing-section
+        .container
+          section.section.reviews-section
+            .reviews
+              .section__header
+                h2.section__title Что обо мне говорят
+                .reviews__arrows
+                  ul.reviews__arrows-list
+                    li.reviews__arrow.reviews__arrow--left
+                      +icon("arrow-down", "reviews__svg")
+                    li.reviews__arrow.reviews__arrow--right
+                      +icon("arrow-down", "reviews__svg")
+
+              .reviews__wrapper     
+                ul.reviews__list
+                  li.reviews__item
+                    .reviews__quote
+                      +icon("quote", "reviews__quote-svg")
+                    .reviews__content
+                      p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                    .reviews__author
+                      .reviews__avatar
+                        .avatar
+                          +image("content/user.jpg", "avatar__img")
+                      .reviews__author-info
+                        h3 Ковальчук Дмитрий
+                        p Основатель Loftschool
+                        
+                  li.reviews__item
+                    .reviews__quote
+                      +icon("quote", "reviews__quote-svg")
+                    .reviews__content
+                      p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                    .reviews__author
+                      .reviews__avatar
+                        .avatar
+                          +image("content/user.jpg", "avatar__img")
+                      .reviews__author-info
+                        h3 Ковальчук Дмитрий
+                        p Основатель Loftschool
+
+        
+          section.section.feedback-section
+            .section__header
+              h2.section__title Связаться со мной
+            .reviews-section__wrapper
+              form#feedback.feedback
+                .feedback__column
+                  .feedback__row
+                    label.feedback__block
+                    
+                      .feedback__field-wrapper
+
+                        .feedback__title
+                          p Введите ваше имя
+                        
+                        .feedback__field
+                          .feedback__icon
+                            +icon("user", "feedback__svg")
+
+                          input(type="text", name="name", required, value="Дмитрий Ковальчук").feedback__input
+                  
+                  .feedback__row
+                    label.feedback__block
+                      .feedback__field-wrapper
+                        .feedback__title
+                          p Введите ваш email
+                        .feedback__field
+                          .feedback__icon
+                            +icon("envelope", "feedback__svg")
+                          input(type="email", name="email", required, value="loftschool@study.com").feedback__input
+
+                .feedback__column
+                  .feedback__row
+                    label.feedback__block
+                      .feedback__field-wrapper
+                        .feedback__title
+                            p Сообщение к письму
+                        .feedback__field
+                          .feedback__icon
+                            +icon("message", "feedback__svg")
+                          textarea(name="message", cols="", rows="2", required).feedback__input Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса
+
+                .feedback__column
+                  .feedback__row
+                    button(type="submit").btn.feedback__submit#submit Отправить
+                    #feedback__result
+
+    include ./pages/footer.pug
+
+
+

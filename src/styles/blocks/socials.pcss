@@ -1,0 +1,43 @@
+.socials__link {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.socials__icon {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.socials__list {
+  display: flex;
+
+  @include phones() {
+    display: none;
+  }
+}
+
+.socials__item {
+  margin-right: 20px;
+  transition: all .3s;
+
+  &:hover {
+    color: $violet-color;
+  }
+}
+
+.footer {
+  .socials__item {
+    margin-right: 20px;
+    transition: all .3s;
+
+    &:hover {
+      color: orange;
+    }
+  }
+}
+
+.socials__item:last-child {
+  margin-right: 0;
+}

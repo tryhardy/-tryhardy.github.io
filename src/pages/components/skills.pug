@@ -1,0 +1,25 @@
+-
+  var items = [
+    ["Frontend", ["Html", "CSS", "JQuery", "SASS"], ["25 75", "15 85", "33 64", "22 78"]],
+    ["Backend", ["GIT", "PHP", "Python", "Vue"], ["40 70", "50 50", "20 80", "78 22"]]
+  ];
+ul.skills-list
+  each row in items
+    li.skills-list__item.skills-row
+      .skills-row__title #{row[0]}
+      ul.skills-row__list
+        each cell in row[1]
+          li.skills-row__item
+            .skill
+              .skill__circle
+              .skill__circle
+              .skill__title= cell
+              .skill__pie
+                <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
+                  <linearGradient id="linear-gradient">
+                    <stop offset="0%" stop-color="#9300e8"/>
+                    <stop offset="100%" stop-color="#4a00ed"/>
+                  </linearGradient>
+                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#e9e9e9" stroke-width="2"></circle>
+                  <circle stroke-dasharray="85 15" class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="url(#linear-gradient)" stroke-width="5"></circle>
+                </svg>

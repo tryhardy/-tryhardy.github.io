@@ -1,0 +1,44 @@
+.menu {
+  display: flex;
+  justify-content: center;
+
+}
+
+.menu__list {
+  display: flex;
+  color: inherit;
+  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 690px;
+}
+
+.menu__item {
+  transition: all .3s;
+
+  &:hover {
+    font-weight: 600;
+  }
+  
+}
+
+.menu__link {
+  padding: 1rem .5rem 1rem;
+  display: block;
+}
+
+.header {
+  .active {
+    .menu__link {
+      @include desktopHd() {
+        color: $violet-color;
+        border-bottom: 2px solid currentColor;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.menu__item:last-child {
+  margin-right: 0;
+}

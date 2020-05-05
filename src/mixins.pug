@@ -1,0 +1,9 @@
+mixin icon(name, className)
+  - var icon = require(`images/icons/${name}.svg`);
+  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+    use(xlink:href=icon.url)
+
+mixin image(path, className)
+  img(src=require(`images/${path}`) class=className)
+
+- var menuItems = ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"];

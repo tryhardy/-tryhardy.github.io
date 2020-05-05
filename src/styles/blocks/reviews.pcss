@@ -1,0 +1,139 @@
+.reviews {
+  &__wrapper {
+    overflow: hidden;
+
+    @include desktopHd() {
+      max-width: 980px;
+    }
+
+    @include desktop() {
+      max-width: 90%;
+    }
+
+    @include tablets() {
+      max-width: 100%;
+    }
+    
+  }
+
+  &__arrows {
+    display: flex;
+
+    @include phones() {
+      margin-top: 2rem;
+    }
+  }
+
+  &__arrows-list {
+    display: flex;
+  }
+  
+  &__arrow {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #353e4e;
+    border-radius: 50%;
+    color: #353e4e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+
+    &--left {
+      transform: rotate(-180deg);
+      fill: currentColor;
+    }
+
+    &--right {
+      fill: currentColor;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  &__svg {
+    width: 30%;
+  }
+
+
+  &__list {
+    display: flex;
+    width: 100%;
+    position: relative;
+    left: 0%;
+  }
+
+  &__item {
+    padding-left: 100px;
+    position: relative;
+    margin-right: 50px;
+    width: 50%;
+    min-width: 50%;
+
+    @include tablets() {
+      padding-left: 50px;
+    }
+
+    @include phones() {
+      min-width: 100%;
+      position: relative;
+    }
+  }
+
+  &__author {
+    display: flex;
+    display: flex;
+    align-items: center;
+  }
+
+  &__quote {
+    position: absolute;
+    left: 0;
+    color: #dae1ec;
+  }
+
+  &__quote-svg {
+    width: 75px;
+    fill: currentColor;
+
+    @include tablets() {
+      width: 30px;
+    }
+  }
+}
+
+
+.reviews__avatar {
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  margin-right: 30px;
+
+  .avatar {
+    box-shadow: none;
+  }
+}
+
+.reviews__content {
+  margin-bottom: 30px;
+
+  p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #a0a7b2;
+    line-height: 1.9;
+  }
+}
+
+.reviews__author-info {
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  p {
+    color: #c8cdd0;
+  }
+}

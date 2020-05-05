@@ -1,0 +1,78 @@
+.section {
+  min-height: 600px;
+  position: relative;
+  padding-top: 120px;
+
+  &__header {
+    position: relative;
+    display: flex;
+
+    @include desktopHd() {
+      margin-bottom: 90px;
+    }
+    @include desktop() {
+      margin-bottom: 50px;
+    }
+
+    @include tablets() {
+      justify-content: center;
+    }
+
+    @include phones() {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 36px;
+    margin-right: 2rem;
+
+    @include phones() {
+      margin-right: 0rem;
+      width:100%;
+      text-align: center;
+      
+    }
+  }
+}
+
+
+.welcome-section {
+  background: url("~images/content/section-1-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.closing-section {
+  background: url("~images/content/section-2-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 150px;
+  padding-bottom: 120px;
+}
+
+.work-section {
+  padding-bottom: 100px;
+
+  @include tablets() {
+    padding-bottom: 20px;
+  }
+}
+
+.reviews-section__wrapper {
+  @include desktopHd() {
+    max-width: 65%;
+  }
+
+  @include desktop() {
+    max-width: 85%;
+  }
+
+  @include tablets() {
+    max-width: 100%;
+  }
+
+}
