@@ -1,0 +1,29 @@
+.tags__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -15px;
+  margin-bottom: 50px;
+
+  @include desktop() {
+    margin-bottom: 2rem;
+  }
+
+  @include tablets() {
+    justify-content: center;
+  }
+
+  @include phones() {
+    justify-content: flex-start;
+  }
+}
+
+.tags__item {
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-color: #f3f5f9;
+  margin-top: 15px;
+  margin-right: 10px;
+  color: #8b8e99;
+  font-size: 14px;
+  font-weight: 700;
+}

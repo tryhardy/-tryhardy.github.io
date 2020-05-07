@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <!--<div id="block">
+    <button @click="event('One', $event)">Кнопка</button>
+    <button @click="event('Two', $event)">Кнопка</button>
+    <input type="text" v-on="{
+      focus:handleChange,
+      input:handleChange
+    }">
+    <h1>{{ example.title }}, был клик в x = {{ example.coordX }}</h1>
+    <a v-bind:href="href">Google</a>
+  </div>-->
+  <div id="app">
+    <div class="outer" @сlick="handleOuter">
+      внешний
+      <div class="inner" @сlick="handleInner">
+        внутренний
+      </div>
+      <a href="" class="link">ссылка</a>
+    </div>
+  </div>
+
+  <!--<script src="vue.js"></script>-->
+</body>
+</html>

@@ -16,3 +16,38 @@
 .btn:hover {
   background: linear-gradient(to right, rgba(74,0,237,1) 0% , rgba(147,0,232,1) 100%, rgba(74,0,237,1) 200%);
 }
+
+.btn__arrow {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s;
+
+  &:hover {
+    background-color:$violet-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn__arrow.btn__arrow--circle {
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #353e4e;
+  border-radius: 50%;
+  color: #353e4e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+
+  &:hover {
+    color: $violet-color;
+    border: 1px solid $violet-color;
+  }
+}

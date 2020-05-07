@@ -67,3 +67,26 @@
     margin-left: 0%;
   }
 }
+
+.section__header--values {
+  line-height: 1.9;
+  flex-wrap: wrap;
+
+  @include phones() {
+    text-align: left;
+  }
+
+  .section__title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .section__desc {
+    p {
+      font-size: 16px;
+      font-weight: 600;
+      color: #a3a6b1;
+    }
+  }
+}

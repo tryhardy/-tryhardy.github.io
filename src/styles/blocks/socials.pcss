@@ -12,10 +12,6 @@
 
 .socials__list {
   display: flex;
-
-  @include phones() {
-    display: none;
-  }
 }
 
 .socials__item {
@@ -27,7 +23,15 @@
   }
 }
 
-.footer {
+.header {
+  .socials__list {
+    @include phones() {
+      display: none;
+    }
+  }
+}
+
+.socials--circle {
   .socials__item {
     margin-right: 20px;
     transition: all .3s;
@@ -35,6 +39,20 @@
     &:hover {
       color: orange;
     }
+  }
+
+  .socials__link {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+  }
+  .socials__icon {
+    width: 20px;
+    height: 20px;
   }
 }
 

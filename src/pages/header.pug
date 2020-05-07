@@ -3,15 +3,9 @@ header.header
     .logo NG
 
   .header__btns
-    include ./menu.pug
+    include ./components/menu.pug
 
   .header__socials
-    - var socials = ["insta", "vk", "github"]
+    include ./components/socials.pug
     
-    ul.socials__list
-      each social in socials
-          li.socials__item
-            a(href="").socials__link 
-              +icon(social, "socials__icon")
-  
-    include ./hamburger.pug
+    include ./components/hamburger.pug

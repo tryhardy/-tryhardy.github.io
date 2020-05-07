@@ -76,8 +76,9 @@
   position: relative;
 }
 
-.about__ps-star {
-  font-size: 48px;
+.about__ps:before {
+  content: "*";
+  font-size: 3.5rem;
   position: absolute;
   left: -50px;
   line-height: 1;
@@ -115,17 +116,20 @@
 }
 
 .user-info__data {
-  td {
+
+}
+
+.user-info {
+  &__cell {
     padding: 0 0 20px 0;
     font-weight: 600;
   }
 
-  td:first-child {
+  &__cell:first-child {
     color: #979cab;
     padding-right: 20px;
   }
 }
-
 
 
 .user-data {
@@ -162,7 +166,7 @@
   }
 }
 
-.user-data__name {
+.user-data__name-header {
   font-size: 70px;
   font-weight: 900;
   line-height: .8;

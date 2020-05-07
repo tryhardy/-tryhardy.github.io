@@ -1,6 +1,6 @@
 .feedback {
 
-  &__column {
+  &__row {
     display:flex;
     margin-bottom: 40px;
 
@@ -9,7 +9,7 @@
     }
   }
 
-  &__row {
+  &__column {
     flex: 1;
     display:flex;
     margin-right: 60px;
@@ -29,13 +29,6 @@
     }
   }
 
-  &__block {
-    flex: 1;
-    border-bottom: 1px solid #464d62;
-    padding-left: 45px;
-    position: relative;
-  }
-
   &__field-wrapper {
     position: relative;
   }
@@ -44,7 +37,7 @@
     width: 30px;
     position: absolute;
     fill: currentColor;
-    left: -45px;
+    left: 0px;
   }
 
   &__title {
@@ -54,21 +47,59 @@
   }
 
   &__svg {
-    fill: #c7c9d0;
+    fill: $light-gray;
+    transition: all .3s;
   }
 
   &__input {
+    padding-left: 45px;
     width: 100%;
-    border: none;
     background-color: transparent;
     color: inherit;
     font-weight: 700;
     font-size: 18px;
     padding-bottom: 10px;
     line-height: 1.9;
+    border: none;
+
+    &[placeholder] {
+      color: inherit;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $light-gray;
+    }
+
+    &:-moz-placeholder {
+      color: $light-gray;
+    }
+
+    &::-moz-placeholder {
+      color: $light-gray;
+    }
+
+    &:-ms-input-placeholder {
+      color: $light-gray;
+    }
 
     &:focus {
       outline: none;
+    }
+  }
+
+  &__block {
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid #464d62;
+    transition: all .3s;
+
+    &:focus-within {
+      outline: none;
+      border-bottom: 1px solid $violet-color;
+
+      .feedback__svg {
+        fill: $violet-color;
+      }
     }
   }
 }

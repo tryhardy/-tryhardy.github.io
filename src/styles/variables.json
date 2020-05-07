@@ -5,5 +5,7 @@
   "bp-desktop": "1200px",
   "bp-tablets": "768px",
   "bp-phones": "480px",
-  "violet-color": "#5500f2"
+  "violet-color": "#5500f2",
+  "sky-color": "#dae1ec",
+  "light-gray": "#c7c9d0"
 }
