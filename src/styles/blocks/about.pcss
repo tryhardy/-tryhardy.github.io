@@ -3,6 +3,7 @@
   align-items: center;
   padding-bottom: 150px;
   padding-top: 120px;
+  position: relative;
 
   @include phones() {
     padding-top: 4.5rem;
@@ -10,22 +11,42 @@
 }
 
 .about {
-  display: flex;
-  max-width: 65%;
-  margin: auto;
+  //display: flex;
+  //max-width: 65%;
+  //margin: auto;
+  display:grid;
+  grid-template-columns: [c-start] repeat(12, 1fr) [c-end];
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "left left center center center center center center center center right right";
 
-   @include desktop(){
-    max-width: 85%;
-   }
+  @include desktop(){
+    grid-template-areas: 
+      "center center center center center center center center center center right right";
+  }
 
-   @include tablets() {
-     max-width: 95%;
-   }
+  @include tablets() {
+    grid-template-columns: [c-start] repeat(6, 1fr) [c-end];
+    grid-template-areas: 
+      "center center center center center center";
+  }
 
-   @include phones(){
-    max-width: 100%;
-    flex-wrap: wrap;
-   }
+  @include phones {
+    display: grid;
+    grid-template-columns: [c-start] repeat(2, 1fr) [c-end];
+    grid-template-areas: 
+      "center center";
+  }
+
+  &__wrapper {
+    grid-area: center;
+    display: flex;
+
+    @include phones {
+      flex-wrap: wrap;
+    }
+  }
 
   &__disclamer,
   &__desc {
@@ -103,15 +124,10 @@
   margin: auto;
   margin-bottom: 75px;
 
-  @include tablets {
-    width: 160px;
-    height: 160px;
-  }
-
   @include phones() {
     width: 200px;
     height: 200px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -163,6 +179,7 @@
     text-align: center;
     margin-right:0;
     margin-bottom: 40px;
+    flex: 1 1 100%;
   }
 }
 

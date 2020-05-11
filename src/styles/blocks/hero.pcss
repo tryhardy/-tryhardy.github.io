@@ -2,17 +2,26 @@
   height: 100vh;
   position: relative;
   min-height: 650px;
+
+  &__container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: [c-start] 1fr [c-end];
+    grid-template-rows: max-content 1fr;
+    grid-template-areas:
+      "header"
+      "parallax"
+  }
 }
 
 .hero__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  grid-area: parallax;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 
   @include desktopHd() {
-    max-width: 50%;
   }
   @include desktop() {
     max-width: none;

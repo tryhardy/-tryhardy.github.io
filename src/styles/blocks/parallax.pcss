@@ -1,0 +1,241 @@
+.parallax {
+  background-color: #f8f7fc;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  height: 100%;
+
+  @include phones {
+    display: none;
+  }
+
+  &__content {
+    position: absolute;
+  }
+
+  &__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+
+    &:nth-child(1) {
+      .parallax__img {
+        object-fit: cover;
+        width:100%;
+        height:100%;
+      }
+    }
+
+    &:nth-child(2) {
+      .parallax__img {
+        right: 0;
+        top: 360px;
+
+        @include desktop {
+          bottom: 25%;
+          top: auto;
+        }
+
+        @include tablets {
+          top: 35.5rem;
+          min-width: 180%;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      .parallax__img {
+        top: 30%;
+        left: 50%;
+        max-width: 190px;
+        width: 100%;
+        margin-left: 20%;
+
+        @include desktop {
+          bottom: 50%;
+          top: auto;
+          left: 50%;
+          max-width: 190px;
+          width: 100%;
+          margin-left: 20%;
+        }
+
+        @include tablets {
+          top: 40%;
+          bottom: auto;
+        }
+      }
+    }
+
+    &:nth-child(4) {
+      .parallax__img {
+        left: 0;
+        bottom: 30%;
+
+        @include tablets {
+          top: 50%;
+          bottom: auto;
+        }
+      }
+    }
+
+    &:nth-child(5) {
+      .parallax__img {
+        left: -15%;
+        top: 610px;
+
+        @include desktop {
+          left: -50%;
+          top: auto;
+          bottom: 10%;
+          min-width: 150%;
+        }
+
+        @include tablets {
+          left: -60%;
+          top: 53%;
+          bottom: auto;
+          min-width: 180%;
+        }
+      }
+    }
+
+    &:nth-child(6) {
+      .parallax__img {
+        right: 0;
+        bottom: 0;
+
+        @include desktop {
+          
+        }
+
+        @include tablets {
+          bottom: 0%;
+          min-width: 150%;
+          right: -30%;
+        }
+      }
+    }
+
+    &:nth-child(7) {
+      .parallax__img {
+        left: 0;
+        bottom: -60%;
+        width: 100%;
+
+        @include desktop {
+          bottom: -45%;
+        }
+
+        @include tablets {  
+          bottom: -35%;
+        }
+      }
+    }
+  }
+
+  &__img {
+    position: absolute;
+  }
+ 
+}
+
+
+
+
+.parallax-buddha {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  height: 100%;
+
+  @include phones {
+    display: none;
+  }
+
+  &__img {
+    position: absolute;
+  }
+
+  &__layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    &:nth-child(1) {
+      .parallax-buddha__img {
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 130%;
+        opacity: .5;
+        bottom: -25%;
+      }
+    }
+  
+    &:nth-child(2) {
+      .parallax-buddha__img {
+        bottom: 0;
+        width: 100%;
+        opacity: .5;
+      }
+    }
+  
+    &:nth-child(3) {
+      .parallax-buddha__img {
+        max-width: 600px;
+        top: 30%;
+        left: 50%;
+        margin-left: 10%;
+
+        @include desktop {
+          top: 40%;
+        }
+
+        @include tablets {
+          top: 48%;
+        }
+      }
+    }
+
+    &:nth-child(4) {
+      .parallax-buddha__img {
+        bottom: -25%;
+        min-width: 200%;
+        left: -65%;
+        opacity: .8;
+      }
+    }
+
+    &:nth-child(5) {
+      .parallax-buddha__img {
+        min-width: 100%;
+        right: -20%;
+        bottom: -25%;
+        opacity: .7;
+      }
+    }
+
+    &:nth-child(6) {
+      .parallax-buddha__img {
+        min-width: 100%;
+        bottom: 15%;
+        left: -30%;
+      }
+    }
+
+    &:nth-child(7) {
+      .parallax-buddha__img {
+        min-width: 150%;
+        bottom: -85%;
+        left: -30%;
+      }
+    }
+  }
+}

@@ -6,14 +6,12 @@ section.values-section.section
       polygon(points="1000,0 1000,100 0,100")
   .container.values-section__wrapper
     .values-section__picture
-      .values-section__image
-        +image("content/backpack.png", "values-section__img")
 
     .values-section__container
       .section__header.section__header--values
-        h2.section__title.longtitle__text Чем я могу быть вам полезна  
-        .longtitle__desc
-          p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+        h2.section__title Чем я могу быть вам полезна  
+        .section__title-desc
+          p.section__title-text Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             
       .values-section__content
-        include ./components/skills.pug
+        #skills-widget

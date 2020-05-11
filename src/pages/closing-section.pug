@@ -1,0 +1,116 @@
+.closing-section
+
+  .parallax-buddha
+    .parallax-buddha__layer(data-speed="0.1")
+      picture
+        source(srcset="content/buddah-parallax/sky.jpg" media="(max-width: 480px)")
+        +image("content/buddah-parallax/sky.jpg", "parallax-buddha__img")
+    
+    .parallax-buddha__layer(data-speed="0.15")
+      picture
+        source(srcset="content/buddah-parallax/Mountain.png" media="(max-width: 480px)")
+        +image("content/buddah-parallax/Mountain.png", "parallax-buddha__img")
+
+    .parallax-buddha__layer(data-speed="0.2")
+      picture
+        source(srcset="content/buddah-parallax/buddha.png" media="(max-width: 480px)")
+        +image("content/buddah-parallax/buddha.png", "parallax-buddha__img")
+    
+    .parallax-buddha__layer(data-speed="0.25")
+      picture
+        source(srcset="content/buddah-parallax/cloud-1.png" media="(max-width: 480px)")
+        +image("content/buddah-parallax/cloud-1.png", "parallax-buddha__img")
+    
+    .parallax-buddha__layer(data-speed="0.3")
+      picture
+        source(srcset="content/buddah-parallax/cloud-2.png" media="(max-width: 480px)")
+        +image("content/buddah-parallax/cloud-2.png", "parallax-buddha__img")
+
+    .parallax-buddha__layer(data-speed="0.35")
+      picture
+        source(srcset="content/buddah-parallax/cloud-3.png" media="(max-width: 480px)")
+        +image("content/buddah-parallax/cloud-3.png", "parallax-buddha__img")
+
+    .parallax-buddha__layer(data-speed="0.4")
+      picture
+        source(srcset="content/buddah-parallax/cloud-3.png" media="(max-width: 480px)")
+        +image("content/buddah-parallax/White.png", "parallax-buddha__img")
+    
+
+  .container
+    section.section.reviews-section
+      .reviews#reviews
+        .section__header.section__header--reviews
+          h2.section__title Что обо мне говорят
+          .reviews__arrows
+            button(
+              @click="previous()"
+              ref="prevBtn"
+              ).btn__arrow.btn__arrow--circle.reviews__arrow.reviews__arrow--left
+              +icon("arrow-down", "reviews__svg")
+            button(
+              @click="next()"
+              ref="nextBtn"
+              ).btn__arrow.btn__arrow--circle.reviews__arrow.reviews__arrow--right
+              +icon("arrow-down", "reviews__svg")
+
+        .reviews__wrapper     
+          flickity(ref="flickity" :options="flickityOptions" :reviews="reviews").reviews__list
+            .reviews__item(v-for="review in reviews" :key="review.id")
+              .reviews__content
+                p {{review.text}}
+              .reviews__author
+                .reviews__avatar
+                  .avatar
+                    img(:src="review.pic").avatar__img
+                .reviews__author-info
+                  h3.reviews__title {{review.name}}
+                  p.reviews__position {{review.occ}}
+                  
+            
+      
+
+  
+    section.section.feedback-section
+      .section__header
+        h2.section__title Связаться со мной
+      .reviews-section__wrapper
+        form#feedback.feedback
+          .feedback__row
+            .feedback__column
+              label.feedback__block
+              
+                .feedback__field-wrapper
+
+                  .feedback__title Введите ваше имя
+                  
+                  .feedback__field
+                    .feedback__icon
+                      +icon("user", "feedback__svg")
+
+                    input(type="text", name="name", required, placeholder="Иван Иванов").feedback__input
+            
+            .feedback__column
+              label.feedback__block
+                .feedback__field-wrapper
+                  .feedback__title Введите ваш email
+                  .feedback__field
+                    .feedback__icon
+                      +icon("envelope", "feedback__svg")
+                    input(type="email", name="email", required, placeholder="loftschool@study.com").feedback__input
+
+          .feedback__row
+            .feedback__column
+              label.feedback__block
+                .feedback__field-wrapper
+                  .feedback__title Сообщение к письму
+                  .feedback__field
+                    .feedback__icon
+                      +icon("message", "feedback__svg")
+                    textarea(name="message", cols="", rows="2", required, placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input
+
+          .feedback__row
+            .feedback__column
+              button(type="submit").btn.feedback__submit#submit 
+                span.btn__text Отправить
+              #feedback__result

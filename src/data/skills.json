@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Frontend",
+    "skills": [
+      {
+        "id": 1,
+        "title": "HTML5",
+        "percent": 80
+      },
+      {
+        "id": 2,
+        "title": "CSS3",
+        "percent": 50
+      },
+      {
+        "id": 3,
+        "title": "JavaScript & jQuery",
+        "percent": 80
+      }
+    ]
+  },
+  {
+    "title": "Backend",
+    "skills": [
+      {
+        "id": 4,
+        "title": "PHP",
+        "percent": 30
+      },
+      {
+        "id": 5,
+        "title": "mySql",
+        "percent": 60
+      },
+      {
+        "id": 6,
+        "title": "Node.js & npm",
+        "percent": 45
+      },
+      {
+        "id": 7,
+        "title": "Mongo.db",
+        "percent": 70
+      }
+    ]
+  }
+]

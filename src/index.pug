@@ -4,193 +4,98 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
     title Личный сайт веб-разработчика
   body
     .wrapper
-      .welcome-section
-        section.hero
-          .container
-            include ./pages/header.pug
+      .wrapper__content
+        .welcome-section
+          .parallax
+            .parallax__layer(data-speed="0.1")
+              picture
+                source(srcset="content/parallax/Sky.jpg" media="(max-width: 480px)")
+                +image("content/parallax/Sky.jpg", "parallax__img")
+            .parallax__layer(data-speed="0.15")
+               picture
+                source(srcset="content/parallax/Mountain.png" media="(max-width: 480px)")
+                +image("content/parallax/Mountain.png", "parallax__img")
+            .parallax__layer(data-speed="0.35")
+              picture
+                source(srcset="content/parallax/Baloon.png" media="(max-width: 480px)")
+                +image("content/parallax/Baloon.png", "parallax__img")
+            .parallax__layer(data-speed="0.23")
+              picture
+                source(srcset="content/parallax/Cloud.png" media="(max-width: 480px)")
+                +image("content/parallax/Cloud.png", "parallax__img")
+            .parallax__layer(data-speed="0.28")
+              picture
+                source(srcset="content/parallax/Man.png" media="(max-width: 480px)")
+                +image("content/parallax/Man.png", "parallax__img")
+            .parallax__layer(data-speed="0.35")
+              picture
+                source(srcset="content/parallax/Mountain-1.png" media="(max-width: 480px)")
+                +image("content/parallax/Mountain-1.png", "parallax__img")
+            .parallax__layer(data-speed="0.38")
+              picture
+                source(srcset="content/parallax/White.png" media="(max-width: 480px)")
+                +image("content/parallax/White.png", "parallax__img")
+          
+          section.hero
+            .container.hero__container
+              include ./pages/header.pug
 
-            .hero__content
-              .user-data
-                .user-data__desc Личный сайт <br> веб-разработчика
-                .user-data__name 
-                  h1.user-data__name-header Наталия Гаращенко
+              .hero__content
+                .user-data
+                  .user-data__desc Личный сайт <br> веб-разработчика
+                  .user-data__name 
+                    h1.user-data__name-header Наталия<br>Гаращенко
 
-            .hero__bottom-btn
-              a(href="").scroll-down-btn 
-                span Скролл
-                +icon("scroll", "scroll-down-btn__svg")
-        
-        section.about-section
-          .container
-            .about
-              .about__user-data
-                .user-info
-                  .user-info__avatar
-                    .avatar
-                      +image("content/user.jpg", "avatar__img")
-                  .user-info__content
-                    -
-                      var userdata = [
-                        ["Проживаю:", "Калининград"],
-                        ["Возраст:", "26 лет"],
-                        ["В вебе:", "2 года"]
-                      ];
-                    table.user-info__data
-                      tbody.user-info__data-body
-                        each row in userdata
-                          tr.user-info__row
-                            td.user-info__cell #{row[0]}
-                            td.user-info__cell #{row[1]}
-
-              .about__content
-                .about__info
-                  .about__disclamer Привет! Меня зовут
-                  h2.about__title Наталия Гаращенко
-                  .about__desc
-                    p.about__desc-text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                .about__ps
-                  p.about__ps-text Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-      
-      include ./pages/values.pug
-
-      section.work-section.section
-        .container
-          .section__header
-            h2.section__title Мои работы
-          .section__wrapper       
-            .work
-              .slider
-                
-                .slider__wrapper
-                  - var slides = ["1", "2", "3", "4", "5"];
-                  .slider__container
-                    .slider__arrows
-                      button.btn__arrow.slider__arrow.slider__arrow--up
-                        +icon("arrow-down", "slider__svg")
-                      button.btn__arrow.slider__arrow.slider__arrow--down
-                        +icon("arrow-down", "slider__svg")
-
-                    .slider__list-wrapper
-                      ul.slider__list
-                        each slide in slides
-                          li.slider__item
-                            .slider__item-wrapper
-                              +image(`content/previews/${slide}.jpg`, "slider__img")
-                    ul.slider-nav__list
-                      each slide in slides
-                        li.slider-nav__item
-                          .slider-nav__item-wrapper
-                            +image(`content/previews/${slide}.jpg`, "slider-nav__img")
-
-                .slider-desc
-                  .slider-desc__wrapper
-                    ul.slider-desc__list
-                      li.slider-desc__item
-                        .slider-desc__container
-                          - var tags = ["HTML", "CSS", "JavaScript"];
-
-                          .tags
-                            ul.tags__list
-                              each tag in tags
-                                li.tags__item #{tag}
-                          .slider-desc__content
-                            h3.slider-desc__title Сайт школы с математическим уклоном
-                            p.slider-desc__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                          .slider-desc__link 
-                            a(href="").slider-desc__link-address 
-                              +icon("link", "slider-desc__icon")
-                              span.slider-desc__link-desc Посмотреть сайт
-        .triangles.work-section__triangles
-          svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
-            polygon(points="0,0 1000,0 1000,100")
-          svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
-            polygon(points="0,0 0,100 1000,0")
-
-      .closing-section
-        .container
-          section.section.reviews-section
-            .reviews
-              .section__header.section__header--values
-                h2.section__title Что обо мне говорят
-                .reviews__arrows
-                  button.btn__arrow.btn__arrow--circle.reviews__arrow.reviews__arrow--left
-                    +icon("arrow-down", "reviews__svg")
-                  button.btn__arrow.btn__arrow--circle.reviews__arrow.reviews__arrow--right
-                    +icon("arrow-down", "reviews__svg")
-
-              .reviews__wrapper     
-                ul.reviews__list
-                  li.reviews__item
-                    .reviews__content
-                      p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                    .reviews__author
-                      .reviews__avatar
+              .hero__bottom-btn
+                a(href="").scroll-down-btn 
+                  span Скролл
+                  +icon("scroll", "scroll-down-btn__svg")
+          
+          section.about-section
+            .container
+              .about
+                .about__wrapper
+                  .about__user-data
+                    .user-info
+                      .user-info__avatar
                         .avatar
                           +image("content/user.jpg", "avatar__img")
-                      .reviews__author-info
-                        h3.reviews__title Ковальчук Дмитрий
-                        p.reviews__position Основатель Loftschool
-                        
-                  li.reviews__item
-                    .reviews__content
-                      p.reviews__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                    .reviews__author
-                      .reviews__avatar
-                        .avatar
-                          +image("content/user.jpg", "avatar__img")
-                      .reviews__author-info
-                        h3.reviews__title Ковальчук Дмитрий
-                        p.reviews__position Основатель Loftschool
+                      .user-info__content
+                        -
+                          var userdata = [
+                            ["Проживаю:", "Калининград"],
+                            ["Возраст:", "26 лет"],
+                            ["В вебе:", "2 года"]
+                          ];
+                        table.user-info__data
+                          tbody.user-info__data-body
+                            each row in userdata
+                              tr.user-info__row
+                                td.user-info__cell #{row[0]}
+                                td.user-info__cell #{row[1]}
 
+                  .about__content
+                    .about__info
+                      .about__disclamer Привет! Меня зовут
+                      h2.about__title Наталия Гаращенко
+                      .about__desc
+                        p.about__desc-text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                    .about__ps
+                      p.about__ps-text Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
         
-          section.section.feedback-section
-            .section__header
-              h2.section__title Связаться со мной
-            .reviews-section__wrapper
-              form#feedback.feedback
-                .feedback__row
-                  .feedback__column
-                    label.feedback__block
-                    
-                      .feedback__field-wrapper
+        include ./pages/values.pug
 
-                        .feedback__title Введите ваше имя
-                        
-                        .feedback__field
-                          .feedback__icon
-                            +icon("user", "feedback__svg")
+        include ./pages/work.pug
 
-                          input(type="text", name="name", required, placeholder="Иван Иванов").feedback__input
-                  
-                  .feedback__column
-                    label.feedback__block
-                      .feedback__field-wrapper
-                        .feedback__title Введите ваш email
-                        .feedback__field
-                          .feedback__icon
-                            +icon("envelope", "feedback__svg")
-                          input(type="email", name="email", required, placeholder="loftschool@study.com").feedback__input
+        include ./pages/closing-section.pug
 
-                .feedback__row
-                  .feedback__column
-                    label.feedback__block
-                      .feedback__field-wrapper
-                        .feedback__title Сообщение к письму
-                        .feedback__field
-                          .feedback__icon
-                            +icon("message", "feedback__svg")
-                          textarea(name="message", cols="", rows="2", required, placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input
-
-                .feedback__row
-                  .feedback__column
-                    button(type="submit").btn.feedback__submit#submit Отправить
-                    #feedback__result
-
-    include ./pages/footer.pug
+      include ./pages/footer.pug
+      include ./pages/templates/entry.pug
 
 
 

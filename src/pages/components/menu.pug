@@ -1,7 +1,0 @@
-include ../../mixins.pug
-nav.menu
-
-  ul.menu__list 
-    each item in menuItems
-      li.menu__item(@click.prevent="isActive" :class="{[activeClass] : changed}")
-        a.menu__link #{item}

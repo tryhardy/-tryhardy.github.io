@@ -5,8 +5,29 @@
   padding: 30px 100px;
   color: white;
   border-radius: 30px 5px;
-  background: linear-gradient(to right, rgba(74,0,237,1) -100% , rgba(147,0,232,1) 0%, rgba(74,0,237,1) 100%);
   transition: all .3s;
+  overflow: hidden;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200%;
+    transition: all .3s;
+    background: linear-gradient(to right, rgba(74,0,237,1) 0% , rgba(147,0,232,1) 50%, rgba(74,0,237,1) 100%);
+  }
+
+  &:hover:before {
+    left:-100%;
+  }
+
+  &__text {
+    position: relative;
+    z-index:10;
+  }
 }
 
 .btn:focus {
@@ -38,7 +59,7 @@
   background-color: transparent;
   width: 50px;
   height: 50px;
-  border: 1px solid #353e4e;
+  border: 1px solid currentColor;
   border-radius: 50%;
   color: #353e4e;
   display: flex;
@@ -48,6 +69,14 @@
 
   &:hover {
     color: $violet-color;
-    border: 1px solid $violet-color;
+    border: 1px solid currentColor;
+  }
+}
+
+.inactive.btn__arrow--circle {
+  color: #80808099;
+  &:hover {
+    color: #80808099;
+    cursor: auto;
   }
 }

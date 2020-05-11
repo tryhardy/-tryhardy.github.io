@@ -1,12 +1,32 @@
 .slider {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  overflow: hidden;
   padding-bottom: 50px;
+  display:grid;
+  grid-template-columns: [c-start] repeat(12, 1fr) [c-end];
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "left left left left left left left left right right right right";
+
+  @include desktop {
+    grid-template-areas: 
+    "left left left left left left left right right right right right";
+  }
 
   @include tablets(){
-    flex-direction: column;
+    grid-template-columns: [c-start] repeat(6, 1fr) [c-end];
+    grid-template-rows: max-content max-content;
+    grid-template-areas: 
+      "left left left left left left"
+      "right right right right right right";
+  }
+
+  @include phones(){
+    grid-template-columns: [c-start] repeat(2, 1fr) [c-end];
+    grid-template-rows: max-content max-content;
+    grid-template-areas: 
+      "left left"
+      "right right";
   }
 
   &__container {
@@ -15,20 +35,22 @@
 
   &__wrapper {
     position: relative;
-    flex: 4;
-    max-width: 70%;
+    grid-area: left;
 
-    @include desktopHd() {
-
-    }
 
     @include desktop() {
-      max-width: 60%;
+      //max-width: 60%;
     }
 
     @include tablets() {
-      max-width: 100%;
+      max-width: 90%;
       margin-bottom: 50px;
+    }
+
+    @include phones {
+      margin-left: -10%;
+      margin-right: -10%;
+      max-width: none;
     }
   }
 
@@ -66,6 +88,34 @@
   &__svg {
     width: 30%;
   }
+
+  &__number {
+    position: absolute;
+    top: 0%;
+    left: 90%;
+    font-size: 25rem;
+    font-weight: 900;
+    z-index: -1;
+    color: #e6e6e6;
+    line-height: 1;
+
+    @include desktop {
+      font-size: 18rem;
+      line-height: 0.7;
+    }
+
+    @include tablets {
+
+    }
+  }
+}
+
+.slider-nav {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  //overflow: hidden;
+  bottom: 0;
 }
 
 .slider-nav__list {
@@ -73,9 +123,9 @@
   bottom: 0;
   right: 0;
   width: 25%;
-  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 
   @include phones() {
     display: none;
@@ -96,23 +146,47 @@
 }
 
 .slider__item {
-  min-width: 100%
+  min-width: 100%;
 }
 
 .slider-desc {
-  flex: 2;
-  max-width: 25%;
-
-    @include desktopHd() {
-    }
+  grid-area: right;
+  position: relative;
+  display:grid;
+  grid-template-columns: [c-start] repeat(4, 1fr) [c-end];
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "empty right right right";
 
     @include desktop() {
-      max-width: 33%;
+      grid-template-columns: [c-start] repeat(5, 1fr) [c-end];
+      grid-template-areas: 
+        "empty right right right right";
     }
 
     @include tablets() {
-      max-width: 85%;
-      margin: auto;
+      grid-template-columns: [c-start] repeat(6, 1fr) [c-end];
+      grid-template-areas:
+        "empty-l right right right right empty-r"
+    }
+
+    @include phones {
+      grid-template-columns: [c-start] repeat(2, 1fr) [c-end];
+      grid-template-areas:
+        "right right";
+    }
+
+    &__wrapper {
+      grid-area: right;
+
+      @include desktop {
+        margin-left: -35px;
+      }
+
+      @include tablets {
+        margin-left: 0;
+      }
     }
 
     &__container {
@@ -194,10 +268,9 @@
   transition: all .3s;
 }
 
-.active {
-  .slider-nav__item-wrapper {
-    border: 2px solid $violet-color;
-  }
+.slider-nav__item.active {
+  outline: 4px solid #5500f2;
+  z-index: 10;
 }
 
 .slider-nav__item {

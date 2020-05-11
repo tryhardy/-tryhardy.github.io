@@ -1,17 +1,32 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  grid-area: header;
+  display: grid;
+  grid-template-columns: [c-start] repeat(12, 1fr) [c-end];
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "left center center center center center center center center center right right";
   padding-top: 2rem;
 
+  @include tablets {
+    grid-template-areas:
+      "left left center center center center center center right right right right";
+  }
+
   &__socials {
+    grid-area: right;
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 
 .header__btns {
-  margin: 0 20px;
-  flex: 1;
+  grid-area: center;
+  display: flex;
+  justify-content: center;
+  //margin: 0 20px;
+  //flex: 1;
 
   @include tablets() {
     display: none;
@@ -21,4 +36,5 @@
 .header__logo {
   font-size: 36px;
   font-weight: 900;
+  grid-area: left;
 }
