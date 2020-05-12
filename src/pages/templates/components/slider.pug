@@ -6,6 +6,8 @@ script(type="text/x-template")#slider
       :currentIndex = "currentIndex"
       :inactiveClass = "inactiveClass"
       @slide="handleSlide"
+      @changeClass="changeClass"
+      @clickSlide="clickSlide"
     )
     info(
       :currentWork="currentWork"
@@ -17,6 +19,7 @@ script(type="text/x-template")#slider-display
       .slider__number {{currentIndex + 1}}
       btns(
         @slide="handleSlide"
+        @changeClass="changeClass"
         :currentIndex = "currentIndex"
         :inactiveClass = "inactiveClass"
       )
@@ -26,6 +29,7 @@ script(type="text/x-template")#slider-display
               .slider__item-wrapper
                 img.slider__img(:src="currentWork.photo")
       thumbs(
+        @clickSlide="clickSlide"
         :works="reversedWorks"
         :currentWork="currentWork"
         :currentIndex = "currentIndex"
@@ -53,6 +57,7 @@ script(type="text/x-template")#slider-thumbs
     ul.slider-nav__list
       li.slider-nav__item(
         v-for="work in works" 
+        @click="clickSlide(work.id)"
         :key="work.id"
         :class="{active: currentWork.id === work.id}"
       )

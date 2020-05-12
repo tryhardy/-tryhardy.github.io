@@ -4,7 +4,9 @@ const thumbs = {
   template: "#slider-thumbs",
   props: ["works", "currentWork", "currentIndex"],
   methods: {
-
+    clickSlide(id) {
+      this.$emit("clickSlide", id);
+    }
   }
 }
 const btns = {
@@ -13,6 +15,7 @@ const btns = {
   methods: {
     handleClick(direction) {
       this.$emit("slide", direction);
+      this.$emit("changeClass", direction);
     }
   }
 }
@@ -28,6 +31,12 @@ const display = {
   methods: {
     handleSlide (direction) {
       this.$emit("slide", direction);
+    },
+    changeClass (direction) {
+      this.$emit("changeClass", direction);
+    },
+    clickSlide(id) {
+      this.$emit("clickSlide", id);
     }
   },
   computed: {
@@ -62,7 +71,7 @@ new Vue({
     return {
       works: [],
       currentIndex: 0,
-      inactiveClass: ""
+      inactiveClass: "prev"
     }
   },
   computed: {
@@ -86,12 +95,9 @@ new Vue({
       if (value > worksLength) 
         {
           this.currentIndex = worksLength;
-          this.inactiveClass = "next";
         }  else if (value < 0) {
           this.currentIndex = 0;
-          this.inactiveClass = "prev";
         } else {
-          this.inactiveClass = "";
         }
     },
     handleSlide(direction) {
@@ -104,7 +110,29 @@ new Vue({
           break;
       }
     },
-
+    clickSlide(id) {
+      const worksLength = this.works.length - 1;
+      const currentId = id - 1;
+      this.currentIndex = currentId;
+      if (currentId <= 0) {
+        this.inactiveClass = "prev";
+      } else if (currentId >= worksLength) {
+        this.inactiveClass = "next";
+      } else {
+        this.inactiveClass = "";
+      };
+    },
+    changeClass(direction) {
+      const worksLength = this.works.length - 1;
+      if (this.currentIndex >= worksLength) 
+        {
+          this.inactiveClass = "next";
+        }  else if (this.currentIndex <= 0) {
+          this.inactiveClass = "prev";
+        } else {
+          this.inactiveClass = "";
+        };
+    },
     makeArrWithImg(array) {
       return array.map((item) => {
         const requirePic = require(`../images/content/previews/${item.photo}`);

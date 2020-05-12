@@ -53,7 +53,6 @@
           startAnimateTop = wScroll - posTop + windowMargin;
           if (startAnimateTop>=0) {
             moveLayers(startAnimateTop);
-            console.log(startAnimateTop)
           }
         }
         if (posTop <= 0) {
@@ -61,7 +60,6 @@
 
           if (startAnimateTop >=0) {
             moveLayers(startAnimateTop);
-            console.log(startAnimateTop)
           }
         }
         
