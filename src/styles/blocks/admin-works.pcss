@@ -1,0 +1,131 @@
+.works {
+
+    &__list {
+        display: flex; 
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        flex: 1;
+        width: calc((100%/3) -1%);
+        max-width: calc((100%/3) -1%);
+        background-color: white;
+        margin-right: 1.5%;
+        margin-bottom: 1.5%;
+        box-shadow: 0.3125rem 0 1.25rem rgba(0,0,0,.07);
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+
+        @include tablets {
+            flex: 1 1 40%;
+            width: calc((100%/2) -1%);
+            max-width: calc((100%/2) -1%);
+
+            &:nth-child(2n+1) {
+                margin-right: 2%;
+            }
+
+            &:nth-child(2n) {
+                margin-right: 0px;
+            }
+
+            &:nth-child(3n) {
+                margin-right: 2%;
+            }
+        }
+
+        @include phones {
+            margin-right: 0;
+            width: 100%;
+            flex: 1 1 100%;
+            max-width: 100%;
+            margin-bottom: 1.25rem;
+
+            &:nth-child(2n+1) {
+                margin-right: 0%;
+            }
+
+            &:nth-child(2n) {
+                margin-right: 0px;
+            }
+
+            &:nth-child(3n) {
+                margin-right: 0%;
+            }
+        }
+
+        &--addwork {
+            display: flex;
+        }
+
+        &-picture {
+            position: relative;
+        }
+
+        &-content {
+            padding: 35px 30px;
+
+            @include tablets {
+            }
+        }
+        
+        &-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        &-desc {
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 600;
+            color: gray;
+            margin-bottom: 25px;
+        }
+
+        &-link {
+            text-decoration: none;
+            font-weight: 700;
+            color: blue;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        &-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &-button {
+            background-color: transparent;
+            color: $light-gray;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 10px;
+            position: relative;
+            padding-right: 30px;
+            padding-left: 0;
+
+            &:focus {
+                outline: none;
+            }
+
+            &--edit {
+                background-image: svg-load('pencil.svg', fill=blue, width=100%, height=100%);
+                background-repeat: no-repeat;
+                background-size: 15px;
+                background-position: right center;
+            }
+
+            &--remove {
+                background-image: svg-load('remove.svg', fill=red, width=100%, height=100%);
+                background-repeat: no-repeat;
+                background-size: 15px;
+                background-position: right center;
+            }
+        }
+
+    }
+  }
