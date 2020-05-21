@@ -1,7 +1,66 @@
 <template lang="pug">
-    form.form
-        input(type="text" placeholder="login")
-        input(type="password" placeholder="password")
-        button(type="submit") Login
-        
+    .maincontent__wrapper
+      form(v-on:submit.prevent="submit").form
+        input(type="text" placeholder="login" v-model="user.login")
+        .error-box(style="color:red") {{ validation.firstError('user.login') }}
+        input(type="password" placeholder="password" v-model="user.password")
+        .error-box(style="color:red") {{ validation.firstError('user.password') }}
+        button(type="submit") Логин
+      
 </template>
+
+<script>
+
+    import SimpleVueValidator from 'simple-vue-validator';
+    const Validator = SimpleVueValidator.Validator;
+
+    export default {
+      mixins: [SimpleVueValidator.mixin],
+      validators: {
+        "user.login": function (value) {
+          return Validator.custom(function () {
+            if(value.length <= 4){
+              return "Логин должен быть более 4 символов"
+            }
+          }) 
+        },
+        "user.password": function (value) {
+          return Validator.custom(function () {
+            if(value.length <= 7){
+              return "Пароль должен содержать 8 и более символов"
+            }
+          }) 
+        }                      
+      },
+      data() {
+        return {
+          user: {
+            login: 'user',
+            password: '1234'
+          }
+        }
+      },
+      methods: {
+        submit() {
+          this.$validate()
+          .then((success) => {
+            if (success) {
+              //alert('Validation succeeded!');
+              //console.log(success);
+              var formData = new formData();
+              formData.append("name",this.user.login)
+              formData.append("password",this.user.password)
+              fetch("./login", {
+                method: "POST",
+                body: formData
+              })
+            }
+          })
+          .catch((error)=> {
+            console.log(error)
+          })
+        }
+      }
+      
+    }
+</script>

@@ -15,7 +15,7 @@ export default {
     computed: {
         showComponent() {
             const comparison = 10 >5;
-            return comparison && hideContent===false
+            //return comparison && hideContent===false
         }
     }
     
