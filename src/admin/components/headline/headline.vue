@@ -3,7 +3,7 @@
         header.header-admin
             .header-admin__wrapper
                 .container.container--flex.container--align-c
-                    .header-content(v-if="showComponent")
+                    .header-content
                         slot
                     .header-admin__title Панель администрирования
                     a().logout Выйти
@@ -12,12 +12,7 @@
 <script>
 export default {
     props: ["hideContent"],
-    computed: {
-        showComponent() {
-            const comparison = 10 >5;
-            //return comparison && hideContent===false
-        }
-    }
+    computed: {   }
     
 }
 </script>

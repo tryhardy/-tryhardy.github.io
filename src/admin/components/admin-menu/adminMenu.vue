@@ -5,19 +5,20 @@
               ul.menu-admin__list
                 li(
                     v-for="item in menu" :key="item.id"
-                    :class="{'active' : activeItemId === item.id}").menu-admin__item
-                    a(
-                        href="#"
-                        @click.prevent="changeItem(item)"
+                    :class="{'active' : activeItemId === item.id}"
+                  ).menu-admin__item
+                    router-link(
+                        :to="item.href"
+                        @click="changeItem(item)"
                     ).menu-admin__link {{item.title}}
 
                     
 </template>
 <script>
     const menu = [
-        {id: 0, title: "Обо мне", href:"/about"},
+        {id: 0, title: "Обо мне", href:"/"},
         {id: 1, title: "Работы", href:"/works"},
-        {id: 2, title: "Отзывы", href:"/reviews"},
+        {id: 2, title: "Отзывы", href:"/recall"},
     ]
 
     export default {
@@ -29,8 +30,9 @@
         },
         methods: {
             changeItem(item) {
-                this.activeItemId = item.id
-                this.$emit("ItemCanged", item);
+              console.log(item)
+              this.activeItemId = item.id
+              this.$emit("ItemCanged", item);
             }
         }
     }

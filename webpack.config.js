@@ -9,7 +9,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = 'https://tryhardy.github.io/dist/';
+  //const publicPath = 'https://tryhardy.github.io/dist/';
+  const publicPath = '/';
 
   const pcss = {
     test: /\.(p|post|)css$/,
@@ -86,8 +87,7 @@ module.exports = (env, argv) => {
   const config = {
     entry: {
       main: "./src/main.js",
-      admin: "./src/admin/main.js",
-      login: "./src/login/main.js"
+      admin: "./src/admin/main.js"
     },
     output: {
       path: path.resolve(__dirname, "./dist"),
@@ -122,11 +122,6 @@ module.exports = (env, argv) => {
         template: "src/admin/index.pug",
         filename: "admin/index.html",
         chunks: ["admin"]
-      }),
-      new HtmlWebpackPlugin({
-        template: "src/login/index.pug",
-        filename: "login/index.html",
-        chunks: ["login"]
       }),
       new SpriteLoaderPlugin({ plainSprite: true }),
       new VueLoaderPlugin()

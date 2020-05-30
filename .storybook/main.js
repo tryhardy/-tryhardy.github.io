@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../src/admin/**/*.stories.js'],
+  stories: ['../src/admin/components/**/*.stories.js'],
   addons: ['@storybook/addon-actions', '@storybook/addon-links'],
   webpackFinal: (config) => {
     config.module.rules.push({
