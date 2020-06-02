@@ -6,10 +6,10 @@
                 li(
                     v-for="item in menu" :key="item.id"
                     :class="{'active' : activeItemId === item.id}"
+                    @click="changeItem(item)"
                   ).menu-admin__item
                     router-link(
                         :to="item.href"
-                        @click="changeItem(item)"
                     ).menu-admin__link {{item.title}}
 
                     

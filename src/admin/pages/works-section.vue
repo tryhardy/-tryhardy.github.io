@@ -9,12 +9,14 @@
                         h2.admin-section__second-title Редактирование работы
                     .admin-section__container
                         .new-work 
-                            .new-work__image
-                                p.new-work__image-desc Перетащите или нажмите кнопку для загрузки изображения
-                                button.add-button Загрузить
-                                button.add-button.add-button--cancel.add-button--preview Изменить превью
-                            .new-work__info
-                                form.add-form
+                            form.add-form
+                                label(for="file-work").new-work__image
+                                    p.new-work__image-desc Перетащите или нажмите кнопку для загрузки изображения
+                                    .add-button Загрузить
+                                    .new-work__image-loaded(:style="{backgroundImage:`url(${renderedPhoto})`}")
+                                    button.add-button.add-button--cancel.add-button--preview Изменить превью
+                                input(id="file-work" name="file" type="file" @change="handleFileChange").file-hidden
+                                .new-work__info
                                     .add-form__row
                                         label.add-form__label Название
                                         input(type="text" v-model="editWork.name").add-form__input
@@ -69,6 +71,8 @@
 
 <script>
 import SimpleVueValidator from 'simple-vue-validator';
+import axios from 'axios';
+import { renderer } from '../helpers/pictures'
 const Validator = SimpleVueValidator.Validator.create({templates: {
       url: 'Введенное значение не является URL'
     }});
@@ -107,16 +111,44 @@ export default {
                 url: '',
                 desc: '',
             },
+            photo:{},
+            title: '',
+            author: '',
+            renderedPhoto: '' 
         }
     }, 
-    components: {
+    components: {},
+    methods: {
+        handleFileChange(event) {
+            // this.photo=event.tagret.files[0];
+            // const formData = new FormData();
+            // FormData.append('photo', this.photo);
+            // FormData.append('title', this.title);
+            // FormData.append('author', this.author);
+            // axios.post('/works', formData)
 
+            const photo=event.target.files[0];
+            renderer(photo).then(pic => {
+                this.renderedPhoto = pic;
+            })
+        }
     }
 }
 </script>
 
 <style lang="postcss">
     @import "../default.pcss";
+    .add-form {
+        display: flex;
+        width: 100%;
+
+        @include tablets {
+            flex-wrap: wrap;
+        }
+    }
+    .file-hidden {
+        display: none;
+    }
     .new-work {
         display: flex;
         justify-content: space-between;
@@ -135,6 +167,17 @@ export default {
         }
         }
 
+        &__image-loaded {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         &__image {
         border: 2px dashed #a1a1a1;
         height: 300px;
@@ -147,6 +190,12 @@ export default {
         flex-direction: column;
         flex: 1 1 45%;
         margin-right: 20px;
+        cursor: pointer;
+        position: relative;
+
+        &:focus {
+            outline: none;
+        }
 
 
         @include tablets {
@@ -160,6 +209,7 @@ export default {
             font-weight: 600;
             text-align: center;
             margin-bottom: 25px;
+            color: gray;
         }
         }
     }

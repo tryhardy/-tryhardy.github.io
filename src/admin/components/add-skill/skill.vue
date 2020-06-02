@@ -81,14 +81,8 @@
                             category: this.skill.category
                         };
                         this.addSkill(skillData)
-                        .then (response => {
-                            console.log(response.data);
-                            this.skill.title="";
-                            this.skill.percent = 0;
-                        })
-                        .catch(error => {
-                            console.log(error)
-                        })
+                        this.skill.title="";
+                        this.skill.percent = 0;
                     }
                 })
                 .catch(error=> {

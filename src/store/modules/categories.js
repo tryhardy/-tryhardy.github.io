@@ -1,8 +1,7 @@
 const categories = {
     namespaced: true,
     state: {
-        categories: [],
-        user: {}
+        categories: []
     },
     actions: {
         getUserInfo(){
@@ -24,7 +23,7 @@ const categories = {
                 throw new Error(error.response.data.message || error.response.data.error)
             })
         },
-        fetchCategories(store) {
+        fetchCategories(store, user) {
             this.$axios.get('/user')
             .then(response => {
                 const user = response.data.user.id;
@@ -36,13 +35,6 @@ const categories = {
                 })
             })
             .catch(error => {
-                // this.$axios.post('/refreshToken')
-                // .then(response => {
-                //     const token = localStorage.setItem('token', response.data.token)
-                // })
-                // .catch (error => {
-                //     throw new Error(error.response.data);
-                // })
             })
         },
         removeCategory(store, catId) {
@@ -58,6 +50,7 @@ const categories = {
         addSkill(store, skill) {
             this.$axios.post(`/skills`, skill)
             .then(response => {
+                console.log(response.data )
                 store.commit('ADD_SKILL', response.data)
             })
             .catch (error => {
@@ -72,6 +65,12 @@ const categories = {
             .catch (error => {
                 console.log(error)
             })
+        },
+        async editSkill({ commit }, editedSkill) {
+            try {
+              const { data } = await this.$axios.post(`/skills/${editedSkill.id}`, editedSkill);
+              commit("EDIT_SKILL", data, { root: true });
+            } catch (error) {}
         }
     },
     getters: {},
@@ -88,9 +87,6 @@ const categories = {
             })
         },
 
-        GET_USER_INFO(state, user) {
-
-        },
 
         ADD_SKILL(state, skill) {
             state.categories = state.categories.map(category => {
@@ -115,9 +111,32 @@ const categories = {
             }
 
             state.categories = state.categories.map((category) => {
-                findCategory(category)
+                //findCategory(category)
+                if(category.id === skilltoRemove.category) {
+                    category.skills = category.skills.filter(skill => {
+                        skill.id !== skilltoRemove.id;
+                    });
+                };
+                return category;
             });
         },
+        EDIT_SKILL(state, skilltoEdit){
+            const editSkillInCategory = category => {
+                category.skills = category.skills.map(skill => {
+                  return skill.id === editedSkill.id ? editedSkill : skill;
+                });
+              };
+        
+              const findCategory = category => {
+                if (category.id === editedSkill.category) {
+                  editSkillInCategory(category);
+                }
+        
+                return category;
+              };
+        
+              state.categories = state.categories.map(findCategory);
+        }
     }
 }
 

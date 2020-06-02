@@ -4,23 +4,23 @@ const user = {
         user: {}
     },
     actions: {
-        getUserInfo(){
+        getUserInfo(store){
             this.$axios.get('/user')
-            .then(response => {            
-                console.log(response.data)
+            .then(response => {     
+                store.commit('GET_USER_INFO', response.data.user)
             })
             .catch(error => {
-
+                console.log(error)
             })
-        },
-        refreshToken(){
-            
         }
     },
     getters: {},
     mutations:{
         GET_USER_INFO(state, user) {
-
+            state.user = {
+                id: user.id,
+                name: user.name,               
+            };
         },
     }
 }

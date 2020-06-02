@@ -70,9 +70,13 @@
             skill,
             skillList
         },
-        props: [
-            "cat",
-        ],
+        props: {
+            cat: {
+                type: Object,
+                default: () => {},
+                required: false
+            }
+        },
         data() {
             return {
                 category: {
@@ -127,6 +131,14 @@
     }
     
     .group {
+        &-component {
+            height: 100%;;
+        }
+        &__form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
         &__input {
             border: none;
             border-bottom: 1px solid transparent;

@@ -1,29 +1,94 @@
 <template lang="pug">
-    .skill-list-component
-        form.skill-list__form
-            ul.skill-list__cells
-                li.skill-list__cell(v-for="skill in skills" :key="skill.id")
-                    skillListEach(:skill="skill")
+    .skill-list-each-component
+        .skill-list__mode(v-if="editMode")
+            .skill-list__cell-wrapper
+                input(name="CellName" type="text" v-model="editedSkill.title").skill-list__cell-name
+                .error {{ validation.firstError('editedSkill.title') }}
+            .skill-list__cell-wrapper.skill-list__cell-wrapper--number
+                input(name="CellValue" type="text" v-model="editedSkill.percent").skill-list__cell-value
+                .error {{ validation.firstError('editedSkill.percent') }}
+            .skill-list__buttons
+                .skill-list__buttons-inactive
+                    button(type="button" @click.prevent="editCurrentSkill").skill-list__button.skill-list__button--yes                    
+                    button(type="button" @click.prevent="editMode=false").skill-list__button.skill-list__button--no
+        .skill-list__mode(v-else)
+            .skill-list__cell-wrapper
+                input(name="CellName" type="text" :value="skill.title" disabled).skill-list__cell-name
+            .skill-list__cell-wrapper.skill-list__cell-wrapper--number
+                input(name="CellValue" type="text" :value="skill.percent" disabled).skill-list__cell-value
+            .skill-list__buttons
+                .skill-list__buttons-active
+                    button(type="button" @click.prevent="editMode=true").skill-list__button.skill-list__button--edit                 
+                    button(type="button" @click.prevent="removeCurrentSkill(skill)").skill-list__button.skill-list__button--delete 
 
                     
 </template>
 <script>
-    import skillListEach from '../skills-list-each/skill-list-each'
-   
+    import SimpleVueValidator from 'simple-vue-validator';  
+    import { mapActions, mapState } from 'vuex'; 
+    const Validator = SimpleVueValidator.Validator;
+    const token = localStorage.getItem('token') || '';
+
+    
     export default {
-        components: {
-            skillListEach
+        mixins: [SimpleVueValidator.mixin],
+        validators: {
+            "editedSkill.title": function (value) {
+                return Validator.custom(function () {
+                    if(Validator.isEmpty(value)){
+                        return "Поле не может быть пустым"
+                    }
+                }) 
+            },
+            "editedSkill.percent": function (value) {
+                return Validator.custom(function () {
+                    if (!Validator.isEmpty(value)) {
+                        var number = value;
+                        if (isNaN(number)) {
+                            return 'Можно ввести только число'
+                        } if(number > 100) {
+                            return 'Значение не может превышать 100%'
+                        } 
+                    } else {
+                            return 'Поле не может быть пустым'
+                    }
+                });
+            },
         },
-        props: [
-            'cat'
-        ],
+        props: {
+            skill: {
+                type: Object,
+                default: () => {},
+                required: true
+            }
+        },
         data() {
             return {
-                skills: this.cat.skills
+                editedSkill: {...this.skill},
+                editMode: false
             }
         },
         methods: {
-        }      
+            ...mapActions('categories', ['removeSkill', 'editSkill', "fetchCategories"]),
+            removeCurrentSkill(skills) {
+                this.removeSkill(skills);
+            },
+            async editCurrentSkill() {
+                try {
+                    await this.editSkill(this.editedSkill);
+                } catch (error) {
+                    console.log(error)
+                } finally {
+                    this.editMode = false;
+                }
+            }
+        },
+        computed: {
+            ...mapState('categories', {
+            categories: state => state.categories
+            }),
+        }  
+        
     }
 </script>
 
@@ -85,6 +150,7 @@
         &__cell-wrapper {
             flex: 1;
             display: flex;
+            position: relative;
 
             input {
                 width: 100%;
@@ -219,6 +285,12 @@
                 background-position: center;
             }
         }
+    }
+
+    .error {
+        position: absolute;
+        color: red;
+        bottom: -10px;
     }
 
 </style>

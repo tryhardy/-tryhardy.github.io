@@ -1,8 +1,10 @@
 <template lang="pug">
   .skills
     ul.skills__list     
+      li.skills__item
+        addGroup(:cat='{}')
       li.skills__item(v-for="cat in categories" :key="cat.id")
-        addGroup(:cat="cat", :catName="cat.category")
+        addGroup(:cat="cat")
 
                     
 </template>
@@ -14,19 +16,27 @@
 
 
   export default {
+    data() {
+      return {
+      }
+    },
     components: {
       addGroup
     },
     methods: {
-      ...mapActions('categories',['fetchCategories']),
+      ...mapActions('categories', ['fetchCategories']),
+      ...mapActions('user',['getUserInfo']),
     },
     computed: {
       ...mapState('categories', {
         categories: state => state.categories
+      }),
+      ...mapState('user', {
+        user: state => state.user
       })
     },
     created() {
-        this.fetchCategories();
+        this.fetchCategories()
     }
   }
 </script>

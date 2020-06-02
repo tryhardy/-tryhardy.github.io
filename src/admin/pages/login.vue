@@ -26,6 +26,7 @@
 <script>
     import $axios from '../requests'
     import SimpleVueValidator from 'simple-vue-validator';
+    import { mapActions} from 'vuex';
     const Validator = SimpleVueValidator.Validator;
 
     export default {
@@ -55,6 +56,7 @@
         }
       },
       methods: {
+        ...mapActions('user', ['getUserInfo']),
         login() {
           this.$validate()
           .then((success) => {
@@ -67,6 +69,7 @@
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 $axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+                this.getUserInfo()
                 this.$router.replace('/')
               })
               .catch (error => {
@@ -82,6 +85,8 @@
             
           })
         }
+      },
+      created() {
       }
       
     }
