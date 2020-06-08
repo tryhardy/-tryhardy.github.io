@@ -72,6 +72,6 @@ new Vue({
   // },
   async created() {
     const response = await request.get('/reviews/323')
-    this.reviews = data;
+    this.reviews = response.data;
   }
 });
