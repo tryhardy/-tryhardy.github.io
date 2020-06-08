@@ -5,21 +5,36 @@
                 .group__input.group__input--name
                     input(
                     type="text" 
-                    v-model="category.title" 
+                    v-model="cat.category" 
                     name="GroupTitle" 
                     placeholder="Название новой группы"
                     ).group__input-name
-                    .group__error#error-val {{ validation.firstError('category.title') }}
+                    .group__error#error-val {{ validation.firstError('cat.category') }}
                 .group__buttons.active
                     .group__buttons-active
-                        button.group__button.group__button--edit                     
-                        button.group__button.group__button--delete 
-                    .group__buttons-inactive
                         button(type="submit").group__button.group__button--yes                    
-                        button(@click.prevent="removeCurCategory").group__button.group__button--no  
+                        button(type="button" @click.prevent="cancel").group__button.group__button--no  
             .group__wrapper
                 skillList(:cat="cat")
-                skill(:cat="cat")        
+                .add-skill
+                    form(@submit.prevent="").add-skill
+                        .add-skill__input.add-skill__input--cell-name
+                            input(
+                            type="text" 
+                            name="GroupItem" 
+                            placeholder="Новый навык"
+                            disabled
+                            ).add-skill__cell.add-skill__cell-name
+                        .add-skill__input.add-skill__input--value
+                            input(
+                            type="text" 
+                            name="GroupItemValue" 
+                            placeholder='0'
+                            disabled
+                            ).add-skill__cell.add-skill__cell-value
+                        .add-skill__add
+                            button(type="submit").add-skill__button.add-skill__button-plus.add-skill__button-plus-disabled +
+       
 </template>
 
 
@@ -37,34 +52,13 @@
     export default {
         mixins: [SimpleVueValidator.mixin],
         validators: {
-            "category.title": function (value) {
+            "cat.category": function (value) {
                 return Validator.custom(function () {
                     if(Validator.isEmpty(value)){
                         return "Поле не может быть пустым"
                     }
                 }) 
-            },
-            "skill.name": function (value) {
-                return Validator.custom(function () {
-                    if(Validator.isEmpty(value)){
-                        return "Поле не может быть пустым"
-                    }
-                }) 
-            },
-            "skill.isNumber": function (value) {
-                return Validator.custom(function () {
-                    if (!Validator.isEmpty(value)) {
-                        var number = value;
-                        if (isNaN(number)) {
-                            return 'Можно ввести только число'
-                        } if(number > 100) {
-                            return 'Значение не может превышать 100%'
-                        } 
-                    } else {
-                            return 'Поле не может быть пустым'
-                    }
-                });
-            },
+            }
         },
         components: {
             skill,
@@ -77,30 +71,35 @@
                 required: false
             }
         },
-        data() {
-            return {
-                category: {
-                    title: this.cat.category,
-                    id: this.cat.id
-                }
-            }
-        },
         methods: {
-            ...mapActions('categories',['addCategory', 'fetchCategories', 'removeCategory']),
+            ...mapActions('categories',['addCategory', 'editCategory', 'fetchCategories', 'removeCategory', 'closeAddGroupBlock']),
             addSkill(newSkill) {
                 this.$emit("skillAdded", newSkill)
             },
             createNewCategory() {
-                this.addCategory(this.category.title)
-                this.category.title = '';
+                this.addCategory(this.cat.category)
                 this.fetchCategories();
             },
+            editCurCategory(){
+                this.editCategory(this.cat);
+            },
             removeCurCategory() {
-                const id = this.category.id;
+                const id = this.cat.id;
                 this.removeCategory(id);
                 this.fetchCategories();
+            },
+            cancel() {
+                this.closeAddGroupBlock();
+                this.cat.category = '';
             }
             
+        },
+        data(){
+            return {
+                editMode: false
+            }
+        },
+        computed: {
         }
     }
 </script>
@@ -128,6 +127,11 @@
         @media screen and (max-width: $bp-phones) {
             @content;
         }
+    }
+
+    .add-skill__button-plus-disabled {
+        cursor:auto;
+        opacity: 0.5;
     }
     
     .group {
@@ -249,7 +253,7 @@
 
         &__buttons {
             &-active {
-            display: none;
+            display: flex;
             }
             &-inactive {
             display: flex;

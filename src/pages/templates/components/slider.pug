@@ -1,5 +1,6 @@
 script(type="text/x-template")#slider
-  .slider                
+  .slider  
+    //pre(style="position:absolute") {{works}}              
     display(
       :currentWork="currentWork"
       :works="works"
@@ -15,6 +16,7 @@ script(type="text/x-template")#slider
           
 script(type="text/x-template")#slider-display
   .slider__wrapper
+    //pre(style="position:absolute") {{currentWork}}
     .slider__container  
       .slider__number {{currentIndex + 1}}
       btns(
@@ -27,7 +29,7 @@ script(type="text/x-template")#slider-display
         ul.slider__list
             li.slider__item
               .slider__item-wrapper
-                img.slider__img(:src="currentWork.photo")
+                img.slider__img(:src=`currentWork.photo`)
       thumbs(
         @clickSlide="clickSlide"
         :works="reversedWorks"
@@ -37,6 +39,7 @@ script(type="text/x-template")#slider-display
 
 script(type="text/x-template")#slider-info
   .slider-desc
+    pre(style="position:absolute") {{currentWork}}
     .slider-desc__wrapper
       .slider-desc__list
         .slider-desc__item
@@ -46,7 +49,7 @@ script(type="text/x-template")#slider-info
             )
             .slider-desc__content
               h3.slider-desc__title {{currentWork.title}}
-              p.slider-desc__text {{currentWork.desc}}
+              p.slider-desc__text {{currentWork.description}}
             .slider-desc__link 
               a(:href="currentWork.link").slider-desc__link-address 
                 +icon("link", "slider-desc__icon")

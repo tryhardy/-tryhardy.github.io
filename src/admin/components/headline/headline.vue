@@ -6,13 +6,22 @@
                     .header-content
                         slot
                     .header-admin__title Панель администрирования
-                    a().logout Выйти
+                    a(@click.prevent="logoutUser").logout Выйти
                     
 </template>
 <script>
+import { mapActions} from 'vuex';
+
 export default {
     props: ["hideContent"],
-    computed: {   }
+    computed: {   },
+    methods: {
+        ...mapActions('user', ['logout']),
+        logoutUser(){
+            this.logout();
+            this.$router.replace('/login')
+        }
+    }
     
 }
 </script>

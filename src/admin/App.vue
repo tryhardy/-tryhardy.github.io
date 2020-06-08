@@ -22,6 +22,7 @@
     import  headline from "./components/headline/headline"
     import  adminMenu from "./components/admin-menu/adminMenu"
     import  user from "./components/user/user";
+    import { mapActions, mapState } from 'vuex'; 
 
     export default {
       data() {
@@ -34,9 +35,12 @@
           user,
       },
       methods: {
+        ...mapActions('user', ['getUserInfo']),
         handleMenuChange(item) {
             this.$router.push(item.href);
         },
+      },
+      created(){
       }
     }
 </script>
@@ -401,7 +405,7 @@
       }
     }
 
-    &__icon {
+    &:before {
       content: "";
       border: 2px solid white;
       width: 150px;
@@ -432,6 +436,7 @@
 
       @include phones {
         width: auto;
+        flex: 1;
       }
     }
     

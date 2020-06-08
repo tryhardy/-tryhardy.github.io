@@ -1,16 +1,17 @@
 <template lang="pug">
   .skills
     ul.skills__list     
-      li.skills__item
+      li.skills__item(v-if="AddGroupButton")
         addGroup(:cat='{}')
       li.skills__item(v-for="cat in categories" :key="cat.id")
-        addGroup(:cat="cat")
+        editGroup(:cat="cat")
 
                     
 </template>
 
 <script>
   import addGroup from "../add-groups/add-group";
+  import editGroup from "../edit-group/edit-group";
   import { mapActions, mapState } from 'vuex';
   const token = localStorage.getItem('token') || '';
 
@@ -21,7 +22,8 @@
       }
     },
     components: {
-      addGroup
+      addGroup,
+      editGroup
     },
     methods: {
       ...mapActions('categories', ['fetchCategories']),
@@ -29,7 +31,9 @@
     },
     computed: {
       ...mapState('categories', {
-        categories: state => state.categories
+        categories: state => state.categories,
+        AddGroupButton: state => state.AddGroupButton
+
       }),
       ...mapState('user', {
         user: state => state.user

@@ -21,9 +21,9 @@ $axios.interceptors.response.use(
         if(error.response.status === 401) {
             const { data } = await $axios.post('/refreshToken');
             const token = data.token;
-
             localStorage.setItem('token', token);
-            originalRequest.defaults.headers['Authorization'] = `Bearer ${token}`;
+            $axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+            originalRequest.headers['Authorization'] = `Bearer ${token}`;
 
             return axios(originalRequest);
         }

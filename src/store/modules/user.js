@@ -1,28 +1,25 @@
-const user = {
+export default {
     namespaced: true,
     state: {
-        user: {}
+      user: {}
+    },
+    mutations: {
+      SET_USER: (state, user) => (state.user = user),
+      CLEAR_USER: state => (state.user = {})
+    },
+    getters: {
+      userIsLoggedIn: state => {
+        const userObj = state.user;
+        const userObjectIsEmpty =
+          Object.keys(userObj).length === 0 && userObj.constructor === Object;
+  
+        return userObjectIsEmpty === false;
+      }
     },
     actions: {
-        getUserInfo(store){
-            this.$axios.get('/user')
-            .then(response => {     
-                store.commit('GET_USER_INFO', response.data.user)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        }
-    },
-    getters: {},
-    mutations:{
-        GET_USER_INFO(state, user) {
-            state.user = {
-                id: user.id,
-                name: user.name,               
-            };
-        },
+      logout({ commit }) {
+        commit("CLEAR_USER");
+        localStorage.clear();
+      }
     }
-}
-
-export default user;
+  };

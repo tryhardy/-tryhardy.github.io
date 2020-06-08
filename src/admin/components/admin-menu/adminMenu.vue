@@ -30,19 +30,32 @@
         },
         methods: {
             changeItem(item) {
-              console.log(item)
               this.activeItemId = item.id
               this.$emit("ItemCanged", item);
             }
+        },
+        mounted(){
+          if (window.location.hash == '#' + this.menu[0].href){
+            this.activeItemId = this.menu[0].id
+          } else if (window.location.hash == '#' + this.menu[1].href) {
+            this.activeItemId = this.menu[1].id
+          } else if (window.location.hash == '#' + this.menu[2].href) {
+            this.activeItemId = this.menu[2].id
+          }
         }
     }
 </script>
 
 <style lang="postcss" scoped>
+    @import "../../default.pcss";
     .menu-admin {
 
     &__list {
       display: flex;
+
+      @include phones {
+        //justify-content: center;
+      }
     }
 
     &__link {
@@ -51,6 +64,10 @@
       text-decoration: none;
       font-weight: normal;
       color: inherit;
+
+      @include phones {
+        padding: 1rem;
+      }
     }
 
     .active {

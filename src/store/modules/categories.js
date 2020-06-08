@@ -1,7 +1,8 @@
 const categories = {
     namespaced: true,
     state: {
-        categories: []
+        categories: [],
+        AddGroupButton: false
     },
     actions: {
         getUserInfo(){
@@ -37,6 +38,12 @@ const categories = {
             .catch(error => {
             })
         },
+        editCategory(store, cat){
+            this.$axios.post(`/categories/${cat.id}`, {title: this.cat.category})
+            .then(response => {
+                store.commit('EDIT_CATEGORY', cat.id)
+            })
+        },
         removeCategory(store, catId) {
             this.$axios.delete(`/categories/${catId}`)
             .then(response => {
@@ -69,8 +76,16 @@ const categories = {
         async editSkill({ commit }, editedSkill) {
             try {
               const { data } = await this.$axios.post(`/skills/${editedSkill.id}`, editedSkill);
-              commit("EDIT_SKILL", data, { root: true });
+              commit("EDIT_SKILL", data);
             } catch (error) {}
+        },
+
+
+        addGroupButtonClicked(store){
+            store.commit('ADD_GROUP_BUTTON')
+        },
+        closeAddGroupBlock(store){
+            store.commit('ADD_GROUP_BUTTON_CLOSE')
         }
     },
     getters: {},
@@ -86,6 +101,14 @@ const categories = {
                 return item.id !== catId
             })
         },
+        EDIT_CATEGORY(state, cat) {
+            state.categories = state.categories.map(category => {
+                if(category.id === cat.id) {
+                    category.category == cat.category;
+                }
+                return category;
+            });
+        },
 
 
         ADD_SKILL(state, skill) {
@@ -97,24 +120,10 @@ const categories = {
             })
         },
         REMOVE_SKILL(state, skilltoRemove) {
-            const removeSkillInCat = (category) => {
-                category.skills = category.skills.filter((skill) => {
-                    return skill.id !== skilltoRemove.id
-                });
-            }
-
-            const findCategory = (category) => {
-                if(category.id === skilltoRemove.category) {
-                    removeSkillInCat(category)
-                }
-                return category;
-            }
-
             state.categories = state.categories.map((category) => {
-                //findCategory(category)
                 if(category.id === skilltoRemove.category) {
                     category.skills = category.skills.filter(skill => {
-                        skill.id !== skilltoRemove.id;
+                        return skill.id !== skilltoRemove.id;
                     });
                 };
                 return category;
@@ -130,12 +139,19 @@ const categories = {
               const findCategory = category => {
                 if (category.id === editedSkill.category) {
                   editSkillInCategory(category);
-                }
-        
+                }      
                 return category;
               };
         
               state.categories = state.categories.map(findCategory);
+        },
+
+
+        ADD_GROUP_BUTTON(state){
+            state.AddGroupButton = true;
+        },
+        ADD_GROUP_BUTTON_CLOSE(state){
+            state.AddGroupButton = false;
         }
     }
 }

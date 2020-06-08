@@ -2,11 +2,11 @@
     .skill-list-each-component
         .skill-list__mode(v-if="editMode")
             .skill-list__cell-wrapper
-                input(name="CellName" type="text" v-model="editedSkill.title").skill-list__cell-name
-                .error {{ validation.firstError('editedSkill.title') }}
+                input(name="CellName" type="text" v-model="skill.title").skill-list__cell-name
+                .error {{ validation.firstError('skill.title') }}
             .skill-list__cell-wrapper.skill-list__cell-wrapper--number
-                input(name="CellValue" type="text" v-model="editedSkill.percent").skill-list__cell-value
-                .error {{ validation.firstError('editedSkill.percent') }}
+                input(name="CellValue" type="text" v-model="skill.percent").skill-list__cell-value
+                .error {{ validation.firstError('skill.percent') }}
             .skill-list__buttons
                 .skill-list__buttons-inactive
                     button(type="button" @click.prevent="editCurrentSkill").skill-list__button.skill-list__button--yes                    
@@ -33,14 +33,14 @@
     export default {
         mixins: [SimpleVueValidator.mixin],
         validators: {
-            "editedSkill.title": function (value) {
+            "skill.title": function (value) {
                 return Validator.custom(function () {
                     if(Validator.isEmpty(value)){
                         return "Поле не может быть пустым"
                     }
                 }) 
             },
-            "editedSkill.percent": function (value) {
+            "skill.percent": function (value) {
                 return Validator.custom(function () {
                     if (!Validator.isEmpty(value)) {
                         var number = value;
@@ -70,12 +70,12 @@
         },
         methods: {
             ...mapActions('categories', ['removeSkill', 'editSkill', "fetchCategories"]),
-            removeCurrentSkill(skills) {
-                this.removeSkill(skills);
+            removeCurrentSkill(skill) {
+                this.removeSkill(skill);
             },
             async editCurrentSkill() {
                 try {
-                    await this.editSkill(this.editedSkill);
+                    await this.editSkill(this.skill);
                 } catch (error) {
                     console.log(error)
                 } finally {

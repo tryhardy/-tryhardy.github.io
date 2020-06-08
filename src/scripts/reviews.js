@@ -1,4 +1,9 @@
 import Flickity from 'vue-flickity';
+import axios from "axios";
+
+const request = axios.create({
+  baseURL: 'https://webdev-api.loftschool.com/'
+})
 
 new Vue({
   el: "#reviews",
@@ -26,13 +31,21 @@ new Vue({
       this.$refs.flickity.previous();
     },
     
-    makeArrWithImg(array) {
-      return array.map((item) => {
-        const requirePic = require(`../images/content/reviews/${item.pic}`);
-        item.pic = requirePic;
-        return item;
-      });
-    }
+    // makeArrWithImg(array) {
+    //   return array.map((item) => {
+    //     const requirePic = require(`../images/content/reviews/${item.pic}`);
+    //     item.pic = requirePic;
+    //     return item;
+    //   });
+    // },
+
+    // makeArrWithImg(array) {
+    //   return array.map((item) => {
+    //     const requirePic = `https://webdev-api.loftschool.com/${item.photo}`;
+    //     item.photo = requirePic;
+    //     return item;
+    //   });
+    // }
   },
 
   mounted() {
@@ -53,8 +66,12 @@ new Vue({
     });
   },
 
-  created() {
-    const data = require("../data/reviews.json");
-    this.reviews = this.makeArrWithImg(data);
+  // created() {
+  //   const data = require("../data/reviews.json");
+  //   this.reviews = data;
+  // },
+  async created() {
+    const response = await request.get('/reviews/323')
+    this.reviews = data;
   }
 });

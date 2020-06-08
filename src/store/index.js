@@ -5,11 +5,15 @@ Vue.use(Vuex);
 
 import categories from "./modules/categories"
 import user from "./modules/user"
+import recalls from "./modules/recalls"
+import works from "./modules/works"
 
 const store = new Vuex.Store({
     modules:{
         categories,
-        user
+        user,
+        recalls,
+        works
     }
 });
 

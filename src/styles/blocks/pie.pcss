@@ -22,15 +22,16 @@
 
   @include phones() {
     width: 45%;
+
+    &:nth-child(2n) {
+      margin-right: 0px;
+    }
   }
 
   &:last-child {
     margin-right: 0px;
   }
 
-  &:nth-child(2n) {
-    margin-right: 0px;
-  }
 }
 
 .skills__pie {

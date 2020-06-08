@@ -1,4 +1,9 @@
 import Vue from "vue";
+import axios from "axios";
+
+const request = axios.create({
+  baseURL: 'https://webdev-api.loftschool.com/'
+})
 
 const thumbs = {
   template: "#slider-thumbs",
@@ -133,16 +138,18 @@ new Vue({
           this.inactiveClass = "";
         };
     },
-    makeArrWithImg(array) {
-      return array.map((item) => {
-        const requirePic = require(`../images/content/previews/${item.photo}`);
-        item.photo = requirePic;
-        return item;
-      });
-    }
+    // makeArrWithImg(array) {
+    //   array = array.map((item) => {
+    //     const vaseUrl = 'https://webdev-api.loftschool.com/';
+    //     const requirePic = baseUrl + item.photo;
+    //     item.photo = requirePic;
+    //     return item;
+    //   });
+    // }
   },
-  created() {
-    const data = require("../data/works.json");
-    this.works = this.makeArrWithImg(data);
+  async created() {
+    const response = await request.get('/works/323')
+    const array = [...response.data]
+    this.works = array;
   }
 });

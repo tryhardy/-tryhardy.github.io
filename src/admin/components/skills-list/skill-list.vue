@@ -2,7 +2,7 @@
     .skill-list-component
         form.skill-list__form
             ul.skill-list__cells
-                li.skill-list__cell(v-for="skill in skills" :key="skill.id")
+                li.skill-list__cell(v-for="skill in cat.skills" :key="skill.id")
                     skillListEach(:skill="skill")
 
                     
@@ -17,11 +17,6 @@
         props: [
             'cat'
         ],
-        data() {
-            return {
-                skills: this.cat.skills
-            }
-        },
         methods: {
         }      
     }
@@ -50,6 +45,10 @@
         @media screen and (max-width: $bp-phones) {
             @content;
         }
+    }
+
+    .skill-list-component {
+        height:100%;
     }
 
 
