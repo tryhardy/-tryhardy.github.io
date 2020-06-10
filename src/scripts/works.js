@@ -9,8 +9,8 @@ const thumbs = {
   template: "#slider-thumbs",
   props: ["works", "currentWork", "currentIndex"],
   methods: {
-    clickSlide(id) {
-      this.$emit("clickSlide", id);
+    clickSlide(work) {
+      this.$emit("clickSlide", work.id);
     }
   }
 }
@@ -26,7 +26,7 @@ const btns = {
 }
 const tags = {
   template: "#slider-tags",
-  props:["tags"]
+  props:["tagsArray"]
 }
 
 const display = {
@@ -42,7 +42,7 @@ const display = {
     },
     clickSlide(id) {
       this.$emit("clickSlide", id);
-    }
+    } 
   },
   computed: {
     reversedWorks() {
@@ -58,9 +58,10 @@ const info = {
     tags
   },
   props: ["currentWork"],
-  computed: {
+  methods: {
     tagsArray() {
-      return this.currentWork.skills.split(",");
+      let tags = this.currentWork.techs.split(",");
+      return tags;
     }
   }
 }
@@ -90,11 +91,11 @@ new Vue({
     }
   },
   methods: {
-    infiniteLoop(value){
-      const worksLength = this.works.length - 1;
-      if (value > worksLength) this.currentIndex = 0;
-      if (value < 0) this.currentIndex = worksLength;
-    },
+    // infiniteLoop(value){
+    //   const worksLength = this.works.length - 1;
+    //   if (value > worksLength) this.currentIndex = 0;
+    //   if (value < 0) this.currentIndex = worksLength;
+    // },
     stoppingLoop(value){
       const worksLength = this.works.length - 1;
       if (value > worksLength) 
@@ -117,7 +118,13 @@ new Vue({
     },
     clickSlide(id) {
       const worksLength = this.works.length - 1;
-      const currentId = id - 1;
+      var currentId = 0;
+      for(let i=0; i<this.works.length; i++){
+        if(this.works[i].id === id) {
+          currentId = i;
+        }
+      }
+
       this.currentIndex = currentId;
       if (currentId <= 0) {
         this.inactiveClass = "prev";
@@ -138,18 +145,18 @@ new Vue({
           this.inactiveClass = "";
         };
     },
-    // makeArrWithImg(array) {
-    //   array = array.map((item) => {
-    //     const vaseUrl = 'https://webdev-api.loftschool.com/';
-    //     const requirePic = baseUrl + item.photo;
-    //     item.photo = requirePic;
-    //     return item;
-    //   });
-    // }
+    makeArrWithImg(array) {
+      return array.map((item) => {
+        const baseUrl = 'https://webdev-api.loftschool.com/';
+        const requirePic = baseUrl + item.photo;
+        item.photo = requirePic;
+        return item;
+      });
+    },
   },
   async created() {
     const response = await request.get('/works/323')
     const array = [...response.data]
-    this.works = array;
+    this.works = this.makeArrWithImg(array);
   }
 });

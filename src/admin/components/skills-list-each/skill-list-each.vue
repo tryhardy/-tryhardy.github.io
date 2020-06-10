@@ -10,7 +10,7 @@
             .skill-list__buttons
                 .skill-list__buttons-inactive
                     button(type="button" @click.prevent="editCurrentSkill").skill-list__button.skill-list__button--yes                    
-                    button(type="button" @click.prevent="editMode=false").skill-list__button.skill-list__button--no
+                    button(type="button" @click.prevent="cancel").skill-list__button.skill-list__button--no
         .skill-list__mode(v-else)
             .skill-list__cell-wrapper
                 input(name="CellName" type="text" :value="skill.title" disabled).skill-list__cell-name
@@ -81,6 +81,14 @@
                 } finally {
                     this.editMode = false;
                 }
+            },
+            edit(){
+                this.editMode = true;
+                this.editedSkill = {...this.skill}
+            },
+            cancel() {
+                this.editMode = false;
+                this.skill = this.editedSkill;
             }
         },
         computed: {

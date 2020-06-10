@@ -393,19 +393,8 @@
         align-items: center;
         justify-content: flex-start;
       }
-    }
 
-    &--preview {
-      display: none;
-
-      @include tablets {
-        display: none;
-        margin-bottom: 25px;
-        margin-top: -25px;
-      }
-    }
-
-    &:before {
+      &:before {
       content: "";
       border: 2px solid white;
       width: 150px;
@@ -426,6 +415,18 @@
         margin-right: 20px;
       }
     }
+    }
+
+    &--preview {
+      display: none;
+
+      @include tablets {
+        display: none;
+        margin-bottom: 25px;
+        margin-top: -25px;
+      }
+    }
+
 
     &__text {
       text-align: center;

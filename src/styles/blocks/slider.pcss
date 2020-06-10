@@ -63,6 +63,8 @@
     @include phones() {
       top: auto;
       bottom: 0;
+      z-index: 9999;
+      right: 5px;
     }
   }
   
@@ -122,7 +124,8 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 25%;
+  width: 20%;
+  max-width: 25%;
   box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -282,4 +285,48 @@
       opacity: .5;
     }
   }
+}
+
+
+.slider__item-wrapper {
+  height:600px;
+
+  @include desktop {
+    height:400px;
+  }
+
+  @include tablets {
+    height:450px;
+  }
+
+  @include phones {
+    height:300px;
+  }
+
+  img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+}
+
+.v-leave-active, 
+.v-enter-active {
+  transition: 3s;
+}
+
+.v-leave {
+  opacity: 1;
+}
+
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-enter {
+  opacity: 0;
+}
+
+.v-enter-to {
+  opacity: 1;
 }

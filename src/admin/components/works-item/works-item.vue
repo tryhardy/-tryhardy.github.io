@@ -3,7 +3,7 @@
         .works__item-picture
             img(:src='photo()').works__item-img
             .tags.tags--work
-                .tags__list(v-for="tag in tags()" :key="tag")
+                .tags__list(v-for="tag in tags()")
                     .tags__item 
                         .tags__close {{tag}}
         .works__item-content

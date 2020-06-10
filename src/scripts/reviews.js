@@ -31,29 +31,26 @@ new Vue({
       this.$refs.flickity.previous();
     },
     
-    // makeArrWithImg(array) {
-    //   return array.map((item) => {
-    //     const requirePic = require(`../images/content/reviews/${item.pic}`);
-    //     item.pic = requirePic;
-    //     return item;
-    //   });
-    // },
+    makeArrWithImg(array) {
+      return array.map((item) => {
+        const baseUrl = 'https://webdev-api.loftschool.com/';
+        const requirePic = baseUrl + item.photo;
+        item.photo = requirePic;
+        return item;
+      });
+    },
 
-    // makeArrWithImg(array) {
-    //   return array.map((item) => {
-    //     const requirePic = `https://webdev-api.loftschool.com/${item.photo}`;
-    //     item.photo = requirePic;
-    //     return item;
-    //   });
-    // }
+    
   },
 
-  mounted() {
+  async mounted() {
     var refs = this.$refs;
     refs.prevBtn.classList.add("inactive");
 
     refs.flickity.on("change", function(position) {
+      console.log(position)
       if (position === this.slides.length -1) {
+        console.log(position)
         refs.nextBtn.classList.add("inactive");        
       } else {
         refs.nextBtn.classList.remove("inactive");        
@@ -64,14 +61,17 @@ new Vue({
         refs.prevBtn.classList.remove("inactive");
       }
     });
+
+    
   },
 
-  // created() {
-  //   const data = require("../data/reviews.json");
-  //   this.reviews = data;
-  // },
   async created() {
     const response = await request.get('/reviews/323')
-    this.reviews = response.data;
+    const array = [...response.data];
+    this.reviews = this.makeArrWithImg(array);
+
+    await this.$nextTick(function () {
+      this.$refs.flickity.rerender(); 
+    });
   }
 });

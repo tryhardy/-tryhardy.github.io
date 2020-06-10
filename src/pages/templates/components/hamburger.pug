@@ -1,4 +1,14 @@
-.menu-hamburger(@click="isActive" :class="{[activeClass] : changed}")
-  a(href="#")#menu-hamburger__btn.menu-hamburger__btn
+include ../../../mixins.pug
+
+.menu-hamburger(:class="{[activeClass] : changed}")
+  a(href="#")#menu-hamburger__btn.menu-hamburger__btn(@click.prevent="isActive")
     .menu-hamburger__link
       .menu-hamburger__line
+
+  nav.menu-m
+    .menu-m__wrapper
+      ul.menu-m__list 
+          li.menu-m__item(v-for="item in menu" :class="{[activeClass] : activeItem == item.name}")
+            a(@click.prevent='goToSection(item)').menu-m__link {{item.name}}
+      
+      include ./socials.pug

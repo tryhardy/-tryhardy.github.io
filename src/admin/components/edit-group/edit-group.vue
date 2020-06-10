@@ -1,6 +1,6 @@
 <template lang="pug">
     .group-component
-        form(v-on:submit.prevent="createNewCategory").group__form
+        form(v-on:submit.prevent="editCurCategory").group__form
             .group__row.group__row--name.active(v-if="editMode")
                 .group__input.group__input--name
                     input(
@@ -13,7 +13,7 @@
                 .group__buttons.active
                     .group__buttons-active
                         button(type="submit").group__button.group__button--yes                    
-                        button(type="button" @click.prevent="editMode=false").group__button.group__button--no  
+                        button(type="button" @click.prevent="cancel").group__button.group__button--no  
             .group__row.group__row--name.active(v-else)
                 .group__input.group__input--name
                     input(
@@ -68,30 +68,38 @@
             }
         },
         methods: {
-            ...mapActions('categories',['addCategory', 'editCategory', 'fetchCategories', 'removeCategory']),
+            ...mapActions('categories',['editCategory', 'fetchCategories', 'removeCategory']),
             addSkill(newSkill) {
                 this.$emit("skillAdded", newSkill)
             },
-            createNewCategory() {
-                this.addCategory(this.cat.category)
-                this.fetchCategories();
-            },
             editCurCategory(){
-                this.editCategory(this.cat);
+                const cat = this.cat
+                this.editCategory(cat);
+                this.fetchCategories();
+                this.previousValue = this.cat.category;
+                this.editMode = false;
+                
             },
             removeCurCategory() {
                 const id = this.cat.id;
                 this.removeCategory(id);
                 this.fetchCategories();
+            },
+            cancel() {
+                this.editMode = false;
+                this.cat.category = this.previousValue;
             }
+
             
         },
         data(){
             return {
-                editMode: false
+                editMode: false,
+                previousValue: ''
             }
         },
-        computed: {
+        mounted() {
+            this.previousValue = this.cat.category;
         }
     }
 </script>

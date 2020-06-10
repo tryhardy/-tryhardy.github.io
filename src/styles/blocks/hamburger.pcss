@@ -44,6 +44,10 @@
     position: relative;
     transition: all .3s;
   }
+
+  &__btn {
+    z-index: 9999;
+  }
 }
 
 .active {
@@ -61,4 +65,63 @@
       bottom: 14px;     
     }
   }
+
+  .menu-m {
+    height: 100%;
+    left: 50%;
+    top: 0;
+    background-color: white;
+
+    @include phones {
+      left: 0;
+    }
+  }
+}
+
+.menu-m {
+  width: 50%;
+  height: 100%;
+  left: 100%;
+  top: 0;
+  background-color: white;
+  transition: all .3s;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  flex-direction: column;
+  position: fixed;
+  z-index: 999;
+
+  @include phones {
+    width: 100%;
+  }
+
+  &__list {
+    margin-bottom:50px;
+  }
+
+  &__link {
+    display:block;
+    font-size:18px;
+    font-weight:600;
+    padding: 15px 10px;
+    padding-left: 0;
+  }
+
+  &__item {
+    transition: all .3s;
+
+    &:hover {
+      color: #5500f2;
+    }
+  }
+
+  .active {
+    color: #5500f2;
+  }
+
+  &__wrapper {
+    width:50%;
+  }
+
 }

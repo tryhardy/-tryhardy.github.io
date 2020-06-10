@@ -1,3 +1,4 @@
+include ../mixins.pug
 footer.footer
   .container
     .footer__wrapper
@@ -8,19 +9,19 @@ footer.footer
           h3.footer__author-name Наталия Гаращенко
           p.footer__author-text Личный сайт веб-разработчика
       .footer__right
-        .footer__menu
+        .footer__menu#menu-footer
           include ./templates/components/menu.pug
         .footer__info
           .footer__description
             p.footer__description-text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
           .socials.socials--circle
-            - var socials = ["insta", "vk", "github"]
+
             
-            ul.socials__list
-              each social in socials
-                  li.socials__item
-                    a(href="").socials__link 
-                      +icon(social, "socials__icon")
+          ul.socials__list
+            each social in socials
+              li.socials__item
+                a(target="_blank" href=`${social.link}`).socials__link 
+                  +icon(social.name, "socials__icon")
         
         .footer__quote
           p.footer__quote-text Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете

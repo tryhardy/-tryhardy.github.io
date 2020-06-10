@@ -5,9 +5,9 @@
                 .group__input.group__input--name
                     input(
                     type="text" 
-                    v-model="cat.category" 
                     name="GroupTitle" 
                     placeholder="Название новой группы"
+                    v-model='cat.category'
                     ).group__input-name
                     .group__error#error-val {{ validation.firstError('cat.category') }}
                 .group__buttons.active
@@ -15,7 +15,6 @@
                         button(type="submit").group__button.group__button--yes                    
                         button(type="button" @click.prevent="cancel").group__button.group__button--no  
             .group__wrapper
-                skillList(:cat="cat")
                 .add-skill
                     form(@submit.prevent="").add-skill
                         .add-skill__input.add-skill__input--cell-name
@@ -40,8 +39,6 @@
 
 <script>
     import SimpleVueValidator from 'simple-vue-validator';  
-    import skill from '../add-skill/skill';
-    import skillList from '../skills-list/skill-list'
     import { mapActions, mapState } from 'vuex';
     import axios from 'axios';
 
@@ -60,33 +57,18 @@
                 }) 
             }
         },
-        components: {
-            skill,
-            skillList
-        },
-        props: {
-            cat: {
-                type: Object,
-                default: () => {},
-                required: false
-            }
-        },
         methods: {
-            ...mapActions('categories',['addCategory', 'editCategory', 'fetchCategories', 'removeCategory', 'closeAddGroupBlock']),
-            addSkill(newSkill) {
-                this.$emit("skillAdded", newSkill)
-            },
+            ...mapActions('categories',['addCategory', 'fetchCategories', 'closeAddGroupBlock']),
             createNewCategory() {
-                this.addCategory(this.cat.category)
-                this.fetchCategories();
-            },
-            editCurCategory(){
-                this.editCategory(this.cat);
-            },
-            removeCurCategory() {
-                const id = this.cat.id;
-                this.removeCategory(id);
-                this.fetchCategories();
+                this.$validate()
+                .then(success => {
+                    this.addCategory(this.cat.category);
+                    this.fetchCategories();
+                    this.cat.category = '';
+                })
+                .catch(error => {
+                    console.log(error)
+                })
             },
             cancel() {
                 this.closeAddGroupBlock();
@@ -96,7 +78,10 @@
         },
         data(){
             return {
-                editMode: false
+                editMode: false,
+                cat: {
+                    category: ''
+                }
             }
         },
         computed: {

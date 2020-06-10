@@ -34,11 +34,10 @@ const works = {
             try {
               const { data } = await this.$axios.post(`/works/${work[1]}`, work[0]);
               commit("EDIT_WORK", data.work);
-              console.log(data.work)
+              //console.log(data.work)
             } catch (error) {}
         },
         removeWork(store, workId) {
-            console.log('sdasdasdsd')
             this.$axios.delete(`/works/${workId}`)
             .then(response => {
                 store.commit("REMOVE_WORK", workId)

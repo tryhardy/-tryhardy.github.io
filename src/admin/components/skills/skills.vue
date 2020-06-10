@@ -2,7 +2,7 @@
   .skills
     ul.skills__list     
       li.skills__item(v-if="AddGroupButton")
-        addGroup(:cat='{}')
+        addGroup
       li.skills__item(v-for="cat in categories" :key="cat.id")
         editGroup(:cat="cat")
 

@@ -9,7 +9,7 @@
                 placeholder="Новый навык"
                 v-model="skill.title"
                 ).add-skill__cell.add-skill__cell-name
-                .add-skill__error {{ validation.firstError('skill.name') }}
+                .add-skill__error {{ validation.firstError('skill.title') }}
             .add-skill__input.add-skill__input--value
                 input(
                 type="text" 

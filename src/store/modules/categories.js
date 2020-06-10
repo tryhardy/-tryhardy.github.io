@@ -8,7 +8,7 @@ const categories = {
         getUserInfo(){
             this.$axios.get('/user')
             .then(response => {            
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(error => {
 
@@ -39,7 +39,7 @@ const categories = {
             })
         },
         editCategory(store, cat){
-            this.$axios.post(`/categories/${cat.id}`, {title: this.cat.category})
+            this.$axios.post(`/categories/${cat.id}`, {title: cat.category})
             .then(response => {
                 store.commit('EDIT_CATEGORY', cat.id)
             })

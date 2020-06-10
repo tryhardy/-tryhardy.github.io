@@ -1,8 +1,7 @@
+include ../../../mixins.pug
 .socials
-  - var socials = ["insta", "vk", "github"]
-
   ul.socials__list
     each social in socials
         li.socials__item
-          a(href="").socials__link 
-            +icon(social, "socials__icon")
+          a(target="_blank" href=`${social.link}`).socials__link 
+            +icon(social.name, "socials__icon")

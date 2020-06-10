@@ -14,8 +14,8 @@
 </template>
 
 <script>
-    import recallsAdd from '../recalls-add/recalls-add';
-    import recallsList from '../recalls-list/recalls-list';     
+    import recallsAdd from '../recalls-add/recalls-add';   
+    import recallsList from '../recalls-list/recalls-list'
     import { mapActions, mapState } from 'vuex';
     const token = localStorage.getItem('token') || '';
 
@@ -49,15 +49,15 @@
     }
 
     &__item {
-        flex: 1 1 20%;
-        width: calc((100%/4) -1%);
-        max-width: calc((100%/4) -1%);
+        flex: 1 1 30%;
+        width: calc((100%/3) -1%);
+        max-width: calc((100%/3) -1%);
         background-color: white;
         margin-right: 1.5%;
         margin-bottom: 1.5%;
         box-shadow: 0.3125rem 0 1.25rem rgba(0,0,0,.07);
 
-        &:nth-child(4n) {
+        &:nth-child(3n) {
             margin-right: 0;
         }
 
@@ -66,9 +66,6 @@
             max-width: calc((100%/3) -1%);
             flex: 1 1 30%;
 
-            &:nth-child(4n) {
-                margin-right: 1.5%;
-            }
             &:nth-child(3n) {
                 margin-right: 0;
             }

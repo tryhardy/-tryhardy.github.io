@@ -1,6 +1,6 @@
+include ../../../mixins.pug
+
 nav.menu
-  - var menuItems = ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"];
   ul.menu__list 
-    each item in menuItems
-      li.menu__item(@click.prevent="isActive" :class="{[activeClass] : changed}")
-        a.menu__link #{item}
+    li.menu__item(v-for="item in menu" :class="{[activeClass] : activeItem == item.name}")
+      a(@click.prevent='goToSection(item)').menu__link {{ item.name }}

@@ -26,19 +26,19 @@
         source(srcset="content/buddah-parallax/cloud-2.png" media="(max-width: 480px)")
         +image("content/buddah-parallax/cloud-2.png", "parallax-buddha__img")
 
-    .parallax-buddha__layer(data-speed="0.35")
+    .parallax-buddha__layer(data-speed="0.32")
       picture
         source(srcset="content/buddah-parallax/cloud-3.png" media="(max-width: 480px)")
         +image("content/buddah-parallax/cloud-3.png", "parallax-buddha__img")
 
-    .parallax-buddha__layer(data-speed="0.4")
+    .parallax-buddha__layer(data-speed="0.35")
       picture
         source(srcset="content/buddah-parallax/cloud-3.png" media="(max-width: 480px)")
         +image("content/buddah-parallax/White.png", "parallax-buddha__img")
     
 
   .container
-    section.section.reviews-section
+    section.section.reviews-section#id-reviews
       .reviews#reviews
         .section__header.section__header--reviews
           h2.section__title Что обо мне говорят
@@ -62,7 +62,7 @@
               .reviews__author
                 .reviews__avatar
                   .avatar
-                    img(:src="review.pic").avatar__img
+                    img(:src="review.photo").avatar__img
                 .reviews__author-info
                   h3.reviews__title {{review.author}}
                   p.reviews__position {{review.occ}}
@@ -71,7 +71,7 @@
       
 
   
-    section.section.feedback-section
+    section.section.feedback-section#id-contacts
       .section__header
         h2.section__title Связаться со мной
       .reviews-section__wrapper

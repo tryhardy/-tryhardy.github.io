@@ -107,16 +107,22 @@
                 })
             },
             addNewWork(){
-                this.work.techs = this.tags.toString();
-                console.log(this.work.techs)
-                const workData = new FormData;
-                workData.append('title', this.work.title);
-                workData.append('techs', this.work.techs);
-                workData.append('photo', this.work.photo);
-                workData.append('link', this.work.link);
-                workData.append('description', this.work.description);
+                this.validate()
+                .then(success => {
+                    this.work.techs = this.tags.toString();
+                    const workData = new FormData;
+                    workData.append('title', this.work.title);
+                    workData.append('techs', this.work.techs);
+                    workData.append('photo', this.work.photo);
+                    workData.append('link', this.work.link);
+                    workData.append('description', this.work.description);
 
-                this.addWork(workData);
+                    this.addWork(workData);
+                    this.addButtonClicked();
+                    })
+                .catch(error => {
+                    console.log(error)
+                })
             },
             addTag(event){
                 this.tags.push(event.target.value);
