@@ -65,7 +65,7 @@
     "babel-polyfill": "^6.26.0",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "request": "^2.88.2",
     "save": "^2.4.0",
     "signale": "^1.4.0",
